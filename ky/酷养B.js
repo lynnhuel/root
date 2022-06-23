@@ -29,7 +29,7 @@ let msg = '';
 		return;
 	else {
 
-		console.log(`本地脚本4-11 )`);       // console.log是输出信息的，可以在脚本日志中看到输出（打印）的信息
+		console.log(`(本地脚本6-23 )`);       // console.log是输出信息的，可以在脚本日志中看到输出（打印）的信息
 
 		console.log(`\n\n=========================================    \n脚本执行 - 北京时间(UTC+8)：${new Date(
 			new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 +
@@ -63,45 +63,14 @@ let msg = '';
 			//      3. 不够可以自己复制
 
 
-            for(i=0;i<5;i++){
+            for(i = 6;i < 11;i++){
                 sleep =randomInt(61,65); 
-                console.log('开始第'+i+'次任务');
+                console.log('\n开始第'+i+'次任务');
                 await 任务();
                 console.log('延迟'+sleep+'秒后开始下一个任务');
                 await $.wait(sleep*1000);
             }
             
-
-
-           /*
-			console.log('开始 A1');
-			await A1();
-			await $.wait(62 * 1000);
-
-			// 这里是开始做任务   
-			console.log('开始 A2');
-			await A2();
-			await $.wait(62 * 1000);
-
-
-			// 这里是开始做任务   
-			console.log('开始 A3');
-			await A3();
-			await $.wait(62 * 1000);
-
-            // 这里是开始做任务   
-			console.log('开始 A4');
-			await A4();
-			await $.wait(62 * 1000);
-
-
-            // 这里是开始做任务   
-			console.log('开始 A5');
-			await A5();
-			await $.wait(62 * 1000);
-            */
-
-
 
 			await SendMsg(msg);    // 与发送通知有关系
 		}
@@ -115,9 +84,8 @@ let msg = '';
 
 function 任务(timeout = 3 * 1000) {
 	return new Promise((resolve) => {
-        num=6;num<11;num++
 		let url = {
-			url: `https://ky.kuy98.com/ky/xrapi/exercise/saveHyTask?pid=2263&type=${num}`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
+			url: `https://ky.kuy98.com/ky/xrapi/exercise/saveHyTask?pid=2263&type=${i}`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
 			headers: {            // headers 是请求体  可以直接用精简后的 hd  也就是服务器校验的部分，他需要啥，我们就给他啥  
 
 				//"userId": data[1],
@@ -143,16 +111,16 @@ function 任务(timeout = 3 * 1000) {
 				let result = JSON.parse(data);
 				if (result.code == 0) {        // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
 
-					console.log(`\n任务1：${data.msg} 🎉 \n`) 
+					console.log(`任务${i}：${result.msg} 🎉 \n`) 
 
 				} else if (result.code === 500) {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
 
-					console.log(`\n任务1：${data.msg} 🎉\n `)
+					console.log(`任务${i}：${result.msg} 🎉\n `)
 					
 
 				} else {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
 
-					
+					console.log(`任务${i}：${result.msg} 🎉\n `)
 				}
 
 			} catch (e) {
@@ -166,277 +134,6 @@ function 任务(timeout = 3 * 1000) {
 
 
 
-
-
-
-
-
-/**
- * 酷养 做任务  GET请求
- * 下面我们来看看函数需要注意的东西吧
- */
- function A1(timeout = 3 * 1000) {
-	return new Promise((resolve) => {
-		let url = {
-			url: `https://ky.kuy98.com/ky/xrapi/exercise/saveHyTask?pid=2263&type=1`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
-			headers: {            // headers 是请求体  可以直接用精简后的 hd  也就是服务器校验的部分，他需要啥，我们就给他啥  
-
-				//"userId": data[1],
-				//"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-				"Host": "ky.kuy98.com",
-				//"User-Agent": UA,
-				//"sessionKey": data[0],
-				//"Referer": "https://servicewechat.com/wx026c06df6adc5d06/176/page-frame.html",
-				//"Connection": "keep-alive",
-                "Token": ky_data
-			},
-			// body: '',       // 这是一个 get 请求，没有请求体 body   如果是 post 不要忘记他鸭！
-
-		}
-
-		$.get(url, async (error, response, data) => {     // 这是一个 get 请求 , 如果是 post  记得把这里改了 
-			try {
-				if (debug) {
-					console.log(`\n\n【debug】===============这是 签到 返回data==============`);
-					console.log(data)
-				}
-
-				let result = JSON.parse(data);
-				if (result.code == 0) {        // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log(`\n任务1：${data.msg} 🎉 \n`) 
-
-				} else if (result.code === 500) {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log(`\n任务1：${data.msg} 🎉\n `)
-					
-
-				} else {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					
-				}
-
-			} catch (e) {
-				//console.log(e)
-			} finally {
-				resolve();
-			}
-		}, timeout)
-	})
-}
-
-
-
-function A2(timeout = 3 * 1000) {
-	return new Promise((resolve) => {
-		let url = {
-			url: `https://ky.kuy98.com/ky/xrapi/exercise/saveHyTask?pid=2263&type=2`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
-			headers: {            // headers 是请求体  可以直接用精简后的 hd  也就是服务器校验的部分，他需要啥，我们就给他啥  
-
-				//"userId": data[1],
-				//"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-				"Host": "ky.kuy98.com",
-				//"User-Agent": UA,
-				//"sessionKey": data[0],
-				//"Referer": "https://servicewechat.com/wx026c06df6adc5d06/176/page-frame.html",
-				//"Connection": "keep-alive",
-                "Token": ky_data
-			},
-			// body: '',       // 这是一个 get 请求，没有请求体 body   如果是 post 不要忘记他鸭！
-
-		}
-
-		$.get(url, async (error, response, data) => {     // 这是一个 get 请求 , 如果是 post  记得把这里改了 
-			try {
-				if (debug) {
-					console.log(`\n\n【debug】===============这是 签到 返回data==============`);
-					console.log(data)
-				}
-
-				let result = JSON.parse(data);
-				if (result.code == 0) {        // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log(`\n任务1：${data.msg} 🎉 \n`) 
-
-				} else if (result.code === 500) {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log(`\n任务1：${data.msg} 🎉\n `)
-					
-
-				} else {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log(`\n做任务 失败 ❌ 了呢,可能是网络被外星人抓走了!\n `)
-					
-
-				}
-
-			} catch (e) {
-				//console.log(e)
-			} finally {
-				resolve();
-			}
-		}, timeout)
-	})
-}
-
-
-function A3(timeout = 3 * 1000) {
-	return new Promise((resolve) => {
-		let url = {
-			url: `https://ky.kuy98.com/ky/xrapi/exercise/saveHyTask?pid=2263&type=3`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
-			headers: {            // headers 是请求体  可以直接用精简后的 hd  也就是服务器校验的部分，他需要啥，我们就给他啥  
-
-				//"userId": data[1],
-				//"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-				"Host": "ky.kuy98.com",
-				//"User-Agent": UA,
-				//"sessionKey": data[0],
-				//"Referer": "https://servicewechat.com/wx026c06df6adc5d06/176/page-frame.html",
-				//"Connection": "keep-alive",
-                "Token": ky_data
-			},
-			// body: '',       // 这是一个 get 请求，没有请求体 body   如果是 post 不要忘记他鸭！
-
-		}
-
-		$.get(url, async (error, response, data) => {     // 这是一个 get 请求 , 如果是 post  记得把这里改了 
-			try {
-				if (debug) {
-					console.log(`\n\n【debug】===============这是 签到 返回data==============`);
-					console.log(data)
-				}
-
-				let result = JSON.parse(data);
-				if (result.code == 0) {        // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log(`\n任务1：${data.msg} 🎉 \n`) 
-
-				} else if (result.code === 500) {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log(`\n任务1：${data.msg} 🎉\n `)
-					
-
-				} else {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log(`\n做任务 失败 ❌ 了呢,可能是网络被外星人抓走了!\n `)
-					
-
-				}
-
-			} catch (e) {
-				//console.log(e)
-			} finally {
-				resolve();
-			}
-		}, timeout)
-	})
-}
-
-
-function A4(timeout = 3 * 1000) {
-	return new Promise((resolve) => {
-		let url = {
-			url: `https://ky.kuy98.com/ky/xrapi/exercise/saveHyTask?pid=2263&type=4`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
-			headers: {            // headers 是请求体  可以直接用精简后的 hd  也就是服务器校验的部分，他需要啥，我们就给他啥  
-
-				//"userId": data[1],
-				//"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-				"Host": "ky.kuy98.com",
-				//"User-Agent": UA,
-				//"sessionKey": data[0],
-				//"Referer": "https://servicewechat.com/wx026c06df6adc5d06/176/page-frame.html",
-				//"Connection": "keep-alive",
-                "Token": ky_data
-			},
-			// body: '',       // 这是一个 get 请求，没有请求体 body   如果是 post 不要忘记他鸭！
-
-		}
-
-		$.get(url, async (error, response, data) => {     // 这是一个 get 请求 , 如果是 post  记得把这里改了 
-			try {
-				if (debug) {
-					console.log(`\n\n【debug】===============这是 签到 返回data==============`);
-					console.log(data)
-				}
-
-				let result = JSON.parse(data);
-				if (result.code == 0) {        // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log(`\n任务1：${data.msg} 🎉 \n`) 
-
-				} else if (result.code === 500) {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log(`\n任务1：${data.msg} 🎉\n `)
-					
-
-				} else {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log(`\n做任务 失败 ❌ 了呢,可能是网络被外星人抓走了!\n `)
-					
-
-				}
-
-			} catch (e) {
-				//console.log(e)
-			} finally {
-				resolve();
-			}
-		}, timeout)
-	})
-}
-
-
-function A5(timeout = 3 * 1000) {
-	return new Promise((resolve) => {
-		let url = {
-			url: `https://ky.kuy98.com/ky/xrapi/exercise/saveHyTask?pid=2263&type=5`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
-			headers: {            // headers 是请求体  可以直接用精简后的 hd  也就是服务器校验的部分，他需要啥，我们就给他啥  
-
-				//"userId": data[1],
-				//"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-				"Host": "ky.kuy98.com",
-				//"User-Agent": UA,
-				//"sessionKey": data[0],
-				//"Referer": "https://servicewechat.com/wx026c06df6adc5d06/176/page-frame.html",
-				//"Connection": "keep-alive",
-                "Token": ky_data
-			},
-			// body: '',       // 这是一个 get 请求，没有请求体 body   如果是 post 不要忘记他鸭！
-
-		}
-
-		$.get(url, async (error, response, data) => {     // 这是一个 get 请求 , 如果是 post  记得把这里改了 
-			try {
-				if (debug) {
-					console.log(`\n\n【debug】===============这是 签到 返回data==============`);
-					console.log(data)
-				}
-
-				let result = JSON.parse(data);
-				if (result.code == 0) {        // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log(`\n任务1：${data.msg} 🎉 \n`) 
-
-				} else if (result.code === 500) {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log(`\n任务1：${data.msg} 🎉\n `)
-					
-
-				} else {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log(`\n做任务 失败 ❌ 了呢,可能是网络被外星人抓走了!\n `)
-					
-
-				}
-
-			} catch (e) {
-				//console.log(e)
-			} finally {
-				resolve();
-			}
-		}, timeout)
-	})
-}
 
 
 // 如果有更多的需求，直接复制上一个函数，改个名   然后稍微更改一下内容   就可以用了   
