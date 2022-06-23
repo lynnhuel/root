@@ -7,7 +7,7 @@
  * 
  * ========= 青龙 =========
  * 变量格式：export ky_data=' xxxx & xxx @  xxxx & xxx '  多个账号用 @分割 
- * 
+ * 抓取请求头 token
  */
 
 const jsname = "酷养";
@@ -97,7 +97,7 @@ function 任务(timeout = 3 * 1000) {
 				//"sessionKey": data[0],
 				//"Referer": "https://servicewechat.com/wx026c06df6adc5d06/176/page-frame.html",
 				//"Connection": "keep-alive",
-                "Token": ky_data
+                "Token": data
 			},
 			// body: '',       // 这是一个 get 请求，没有请求体 body   如果是 post 不要忘记他鸭！
 
