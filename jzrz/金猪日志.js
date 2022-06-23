@@ -6,7 +6,7 @@
  * 本脚本仅用于学习使用请勿直接运行
  * 
  * ========= 青龙 =========
- * 变量格式：export jzrz_data=' Authorization& server &sign @ Authorization& server &sign  '  多个账号用 @分割 
+ * 变量格式：export jzrz_data=' Authorization@ Authorization  '  多个账号用 @分割 
  * 
  */
 
@@ -164,29 +164,29 @@ function sjb(timeout = 0) {
         let url = {
             url: `http://appapi.jinzhuqianguan.com/api/Member/getCoin1`,
             headers: {
-				"Authorization": $data[0],
-			    "user-agent": UNI-APP/1.0,
-			    "Content-Type": application/x-www-form-urlencoded,
+				"Authorization": jzrz_data,
+			    "user-agent": "UNI-APP/1.0",
+			    "Content-Type": "application/x-www-form-urlencoded",
 			    "Content-Length": 96,
-			    "Host": appapi.jinzhuqianguan.com,
-			    "Connection": Keep-Alive,
-			    "Accept-Encoding": gzip,
+			    "Host": "appapi.jinzhuqianguan.com",
+			    "Connection": "Keep-Alive",
+			    "Accept-Encoding": "gzip",
 			}
 			,
-            body: '{brand=vivo&server_time=$data[1]&sign=$data[2]&platform=android&uucode=}',
+            body: '{brand=vivo&server_time=1655959826&sign=e49d43899ec43d966d5c5fece566fdcd&platform=android&uucode=}',
         }
         $.post(url, async (err, resp, data) => {
             try {
 
                 const result = JSON.parse(data)
 
-                if (result.code == 200) {
+                if (result.status == 200) {
 
-                    console.log(`【收取金币】：${result.data}\n`)
-                    $.message += `【收取金币】：${result.data}\n`
+                    console.log(`${result.msg} :${result.coin/10}金币\n`)
+                    
                 } else {
 
-                    console.log(`【收取失败】：${result.message}\n`)
+                    console.log(`${result.message}\n`)
 
                 }
             } catch (e) {
