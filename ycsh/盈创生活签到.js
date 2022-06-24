@@ -7,7 +7,7 @@
  * 
  * ========= 青龙 =========
  * 变量格式：export ycsh=' xxxx & xxx @  xxxx & xxx '  多个账号用 @分割 
- * 
+ * 抓取请求头里面的  token
  */
 
 const jsname = "盈创生活";
@@ -105,14 +105,14 @@ function 签到 (timeout = 3 * 1000) {
 		}
 
 		if (debug) {
-			console.log(`\n【debug】=============== 这是 签到 请求 url ===============`);
+			//console.log(`\n【debug】=============== 这是 签到 请求 url ===============`);
 			//console.log(JSON.stringify(url));     //这个是打印请求的url日志信息
 		}
 
 		$.get(url, async (error, response, data) => {     // 这是一个 get 请求 , 如果是 post  记得把这里改了 
 			try {
 				if (debug) {
-					console.log(`\n\n【debug】===============这是 签到 返回data==============`);
+					//console.log(`\n\n【debug】===============这是 签到 返回data==============`);
 					//console.log(data)     //这个是答应服务器返回的信息
 				}
 
