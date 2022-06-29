@@ -1,4 +1,4 @@
-/**
+/***
  * 金猪日志 
  * 地址： https://raw.githubusercontent.com/yml2213/template/master/jiaocheng.js
  * 
