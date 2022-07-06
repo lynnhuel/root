@@ -48,7 +48,7 @@ let jrttjsbFarm = ($.isNode() ? process.env.jrttjsbFarm : $.getdata('jrttjsbFarm
 let userIdx = 0
 let UAcount = 0
 let userStatus = []
-let maxReadPerRun = ($.isNode() ? process.env.jrttjsbReadNum : $.getdata('jrttjsbReadNum')) || 10;
+let maxReadPerRun = ($.isNode() ? process.env.jrttjsbReadNum : $.getdata('jrttjsbReadNum')) || 0;
 let readList = []
 
 let validList = []
@@ -71,7 +71,7 @@ let adIdList = [26, 181, 186, 187, 188, 189, 190, 195, 210, 214, 216, 225, 308, 
         }
         
         await initAccountInfo()
-        //await RunMultiUser()
+        await RunMultiUser()
     }
   
 
