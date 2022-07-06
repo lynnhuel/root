@@ -37,6 +37,7 @@ let ckStr = ($.isNode() ? process.env.HHYD_token : $.getdata(`HHYD_token`)) || '
 let msg = "";
 let ck = "";
 let G = 'Tom   2022.6.25 增加提现 抽奖 TG频道:https://t.me/tom_ww'
+let yyd = ""
 /////////////////////////////////////////////////////////
 console.log(`${G}\n`);
 msg += `${G}\n`;
