@@ -220,6 +220,7 @@ async function ReadArticles() {
         if(userStatus[userIdx]==true) {
             await ReadDouble()
             await DailyArtsReward()
+            await DailyPushReward()
         }
     }
     for(let i=0; i<maxReadPerRun; i++) {
