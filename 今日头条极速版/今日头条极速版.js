@@ -71,7 +71,7 @@ let adIdList = [26, 181, 186, 187, 188, 189, 190, 195, 210, 214, 216, 225, 308, 
         }
         
         await initAccountInfo()
-        await RunMultiUser()
+        //await RunMultiUser()
     }
   
 
