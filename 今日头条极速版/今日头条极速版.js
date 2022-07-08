@@ -155,7 +155,7 @@ async function RunMultiUser() {
             await QuerySleepStatus()
             await QueryWalkInfo()
             await DoneEat()
-            await llsp()
+            
             
             for(let adId of adIdList) await ExcitationAd(adId)
             //console.log(validList)
@@ -385,6 +385,7 @@ async function QueryUserInfo(doTask) {
             } else {
                 console.log(`用户${userIdx+1}今天已签到`)
             }
+                await llsp()
         }
     } else {
         console.log(`用户${userIdx+1}查询状态失败：${result.err_tips}`)
