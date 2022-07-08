@@ -155,6 +155,7 @@ async function RunMultiUser() {
             await QuerySleepStatus()
             await QueryWalkInfo()
             await DoneEat()
+            await llsp()
             
             for(let adId of adIdList) await ExcitationAd(adId)
             //console.log(validList)
@@ -440,6 +441,27 @@ async function ExcitationAd(task_id) {
         //validList.push(task_id)
     } else {
         console.log(`用户${userIdx+1}看视频任务[${task_id}]失败：${result.err_tips}`)
+        //if(result.err_tips != '网络错误') validList.push(task_id)
+    }
+}
+
+
+//浏览商品
+async function llsp(task_id) {
+    let caller = printCaller()
+    let timeInMS = Math.round(new Date().getTime())
+    let url = `https://api5-normal-lf.toutiaoapi.com/luckycat/lite/v1/ecommerce/done_task?pass_through=%E5%A4%B4%E6%9D%A1lite-%E6%8E%A8%E8%8D%90%E5%88%97%E8%A1%A8-%E9%80%9A%E6%8A%95-ocpd-%E8%87%AA%E5%8A%A8%E5%8C%96RTA%EF%BC%8818-24%EF%BC%89&is_pad=0&act_token=aBsm0SUnN0jxn4Y-4Det1Ke6jchU6TQXGW-lZsf3wJAPEZQz8UoPr5e7bOGuRd6aQQRQlsVOyNu5GDf6BBfJDA&act_hash=8e752ec89c46fc9892b8e2e545db9c36&cookie_base=usanalswGHnRIg4zmYEtMp4oHM-yH6-ox7puzSVp3fdux28-nU6BP5X3VgJb_cO_Amq_WPu7MvdbXTsM47LrHQ&cookie_data=9LGcfwwWmJKW7_2QFn8kww&iid=4068623527444541&device_id=4388895296587294&ac=wifi&channel=lite_vivo&aid=35&app_name=news_article_lite&version_code=874&version_name=8.7.4&device_platform=android&os=android&ab_version=668907%2C4303279%2C1859937%2C668905%2C4303247%2C668906%2C4303255%2C668904%2C4303238%2C668908%2C4303283%2C668776%2C4303276%2C668903%2C4303273%2C3596061&ab_client=a1%2Ce1%2Cf2%2Cg2%2Cf7&ab_group=z2&ab_feature=z1&abflag=3&ssmix=a&device_type=vivo+X21A&device_brand=vivo&language=zh&os_api=27&os_version=8.1.0&manifest_version_code=8740&resolution=1080*2154&dpi=480&update_version_code=87409&_rticket=${timeInMS}&sa_enable=0&dq_param=0&plugin_state=139681997156381&isTTWebView=1&session_id=42d32c38-c52f-4403-9564-0a0b08ff7144&host_abi=armeabi-v7a&tma_jssdk_version=2.8.0.16&rom_version=funtouch+os_4.0_pd1728_a_1.18.21&cdid=3aeeeb1a-f093-496d-b3f0-fade4a1a548d&polaris_version=1.0.5&status_bar_height=32&luckydog_base=7MoISmtkUnwZoVmwgH3UD61ztHmFSbKBJWbmXpHN-YIGeJjUx3OOIlBtz-U3rpOMh8YbCyATbL6fZAGkj0H0Me2NSErzWcjmyFc5erosmqxVGNcOcnPhCwEkljjSQYMRGZBQJAvxvDSec5mH1JA6ItQR5kKF-9uDaAXGFGJxWUk&luckydog_data=m542l_65iO49IBMMyVNNYomuIJR0WTQnElrigYREXkOYx5h_F3hMHzs69bNxP_ymyiedjHx-JENrEYHVwu3pa2pJRi53YkJiVd8dzB7_93I&luckydog_token=585He9FOb4nUu-eV8_-q6PU89QeY_4Hb-yfU1hM_GZ2YCJgK5Za5zJFh21EWGk3p&luckydog_sdk_version=5.0.1-rc.11&luckydog_settings_version=15&luckycat_version_name=5.0.1-rc.14-ttlite&luckycat_version_code=501014`
+    let body = `{"ad_alias_position":"coin","task_key":"excitation_ad", "task_id" : "${task_id}"}`
+    let urlObject = populatePostUrl(url,body)
+    await httpPost(urlObject,caller)
+    let result = httpResult;
+    if(!result) return
+    //console.log(result)
+    if(result.err_no == 0) {
+        console.log(`用户${userIdx+1}浏览商品：${result.err_tips}  获得${result.data.score_amount}金币`)
+        //validList.push(task_id)
+    } else {
+        console.log(`用户${userIdx+1}浏览商品：${result.err_tips}`)
         //if(result.err_tips != '网络错误') validList.push(task_id)
     }
 }
