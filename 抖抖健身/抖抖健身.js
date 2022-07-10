@@ -1,17 +1,3 @@
-/*
-
-重写
-[rewrite_local]
-http://www.frgxmle.cn/user/getuseinfo url script-request-header ddz.js
-[MITM]
-hostname = www.frgxmle.cn
-
-
-资金盘 不要投资 一毛钱都不要花
-
-打开网页登陆后 点击 我的自动获取数据
-
-*/
 
 const $ = new Env("抖抖");
 
@@ -57,16 +43,19 @@ class UserInfo {
             if (result.data==1){
             this.money=result.result.money
             this.id=result.result._id
-            alipay=result.result.alipay
-            
-                console.log(`\n账号[${this.name}]`+result.result.nickname+`  余额 ${this.money}`)
-                console.log(`账号[${this.name}]`+`绑定支付宝账号 `+alipay)
-                console.log(`账号[${this.name}]`+`今日收益`+result.result.todaymoney+`  已提现`+result.result.cashallmoney)
-if (this.money>=0.6){
-console.log(`账号[${this.name}]`+`开始提现`)
-await this.pushcash()
-}
-
+            //realname=result.result.realname
+            this.name=result.result.realname
+            if (this.name)var newname=this.name.substr(0,1)+'*'+this.name.substr(2)
+            alipay=result.result.alipay||'';
+		  alipay=''+alipay
+		  if (alipay)var newalipay = alipay.substr(0,3) + "****" + alipay.substr(7)
+                console.log(`\n用户 `+result.result.nickname+`  余额 ${this.money}元 邀请数  `+result.result.pinnum)
+                console.log(`绑定支付宝账号 `+newname+` - `+newalipay)
+                console.log(`今日收益`+result.result.todaymoney+`元  已提现`+result.result.cashallmoney+`元`)
+				if (this.money>=0.6){
+					console.log(`账号[${this.name}]`+`开始提现`)
+					await this.pushcash()
+				}
             }
 
         } catch(e) {
@@ -87,7 +76,7 @@ await this.pushcash()
             let result = httpResult;
             if (result.data==1){
                 console.log(`\n账号[${this.name}]`+result.content)
-            }else console.log(`\n账号[${this.name}]`+` 可抖次数不足或未到抖抖时间`)
+            }else console.log(`\n账号[${this.name}]`+`可抖次数不够或未到抖抖时间`)
 
         } catch(e) {
             console.log(e)
@@ -127,24 +116,24 @@ await this.pushcash()
         await GetRewrite()
     }else {
         if(!(await checkEnv())) return;
-        
+        console.log(`\n增加了支付宝姓名跟邀请总人数显示\n隐私输出log 姓名手机号会自动打码\n调整了执行顺序，先抖后查\n\nps：余额满足0.6才会自动打款到支付宝`)
         let taskall = []
         let validList = userList.filter(x => x.ckValid)
         
         if(validList.length > 0) {
-            console.log('\n-------------- 查询 --------------')
-            taskall = []
-            for(let user of validList) {
-                taskall.push(user.getuseinfo())
-            }
-            await Promise.all(taskall)
+
             console.log('\n-------------- 抖抖 --------------')
             taskall = []
             for(let user of validList) {
                 taskall.push(user.activeone())
             }
             await Promise.all(taskall)
-
+            console.log('\n-------------- 查询 --------------')
+            taskall = []
+            for(let user of validList) {
+                taskall.push(user.getuseinfo())
+            }
+            await Promise.all(taskall)
         }
         
         await $.showmsg();
@@ -226,24 +215,6 @@ function populateUrlObject(url,token,unionid,body=''){
     return urlObject;
 }
 
-
-
-function mxis(url,token,unionid,body=''){
-    let host = url.replace('//','/').split('/')[1]
-    let urlObject = {
-        url: url,
-        headers: {"Accept": "*/*","Accept-Encoding": "gzip, deflate","Accept-Language": "zh-cn","Connection": "keep-alive","Content-Length": "54","Content-Type": "application/json","Host": "www.frgxmle.cn","Origin": "http://www.jvcrvyz.cn","Referer": "http://www.jvcrvyz.cn/","User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Mobile/15E148 Safari/604.1","token": "43f6147e6b170dc410db4b053d7e6925","unionid": "oFFbU5vUEGO5xuefDN6rE8DSabvs"},
-        timeout: 5000,
-    }
-    
-    if(body) {
-        urlObject.body = body
-        //urlObject.headers['Content-Type'] =  'application/json'
-        //urlObject.headers['Content-Length'] = urlObject.body ? urlObject.body.length : 0
-    }
-    //console.log(urlObject.headers)
-    return urlObject;
-}
 async function httpRequest(method,url) {
     httpResult = null, httpReq = null, httpResp = null;
     return new Promise((resolve) => {
