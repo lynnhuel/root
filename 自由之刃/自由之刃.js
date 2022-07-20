@@ -29,7 +29,7 @@ const jsname = '自由之刃'
 const $ = Env(jsname)
 let ck = ($.isNode() ? process.env.zycookie : $.getdata('zycookie')) || '';
 let ckArr = []
-let sign = ($.isNode() ? process.env.zysigncookie : $.getdata('zysigncookie')) || '&eu-stamp=1658238834814&eu-sign=a0b1945da5c4eebece8b4b5534f8ce2a';
+let sign = ($.isNode() ? process.env.zysigncookie : $.getdata('zysigncookie')) || '&eu-stamp=1658295104574&eu-sign=48c20859a35a95f05403aafb369855d6';
 let envSplitor = ['@']
 !(async () => {
 
