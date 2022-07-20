@@ -8,12 +8,28 @@ v2p 圈×变量  zycookie
 用 @  分割多账户
 例如
 青龙变量
-export zycookie= '手机号1#密码1@手机号2#密码2'
+export zycookie='手机号1#密码1@手机号2#密码2'
+
+
+
+打开自由之刃app   
+抓网址
+http://zyzr.xkrvlj.cn:91/home/blind/openBlind?
+抓一个摇一摇的  请求体末尾  （默认自带一个我的   不能用  就替换成自己的）
+
+比如请求体是
+&type=2&phone_type=ios&eu-stamp=1658238834814&eu-sign=a0b1945da5c4eebece8b4b5534f8ce2a
+
+对应变量
+export zysigncookie='&eu-stamp=1658238834814&eu-sign=a0b1945da5c4eebece8b4b5534f8ce2a'
+
+
 */
 const jsname = '自由之刃'
 const $ = Env(jsname)
 let ck = ($.isNode() ? process.env.zycookie : $.getdata('zycookie')) || '';
 let ckArr = []
+let sign = ($.isNode() ? process.env.zysigncookie : $.getdata('zysigncookie')) || '&eu-stamp=1658238834814&eu-sign=a0b1945da5c4eebece8b4b5534f8ce2a';
 let envSplitor = ['@']
 !(async () => {
 
@@ -62,23 +78,25 @@ async function login(sj, pwd) {
             zyto = result.token
             zyid = result.data.id
             console.log(`${result.msg} 余额：${result.data.user_money} 自由豆 ${result.data.bean}`)
-
-            for (let x = 1; x <= 3; x++) {
-                this.a = x
-                if (this.a == 1) {
+            await check()
+            this.cashx=result.data.user_money
+                if (this.cashx > 0&& this.cashx <15) {
                     this.num = 1
-                    this.o = "提现一元"
+                    this.o = "可提现一元"
+                    await tx()
                 }
-                if (this.a == 2) {
+                if (this.cashx >= 15&& this.cashx <40) {
                     this.num = 20
-                    this.o = "提现二十元"
+                    this.o = "可提现二十元"
+                    await tx()
                 }
-                if (this.a == 3) {
+                if (this.cashx >= 40&& this.cashx <100) {
                     this.num = 50
-                    this.o = "提现五十元"
+                    this.o = "可提现五十元"
+                    await tx()
                 }
-                await tx()
-            }
+                
+            
             for (let i = 1; i <= 2; i++) {
                 this.x = i
                 if (this.x == 1) this.m = `普通宝箱`
@@ -97,10 +115,29 @@ async function login(sj, pwd) {
     }
 }
 
+async function check() {
+    try {
+        let url = `http://zyzr.xkrvlj.cn:91/home/user/getUserInfo?`
+        let body = ``
+        let zy = `${zyid}`
+        let to = `${zyto}`
+        let urlObject = mini(url, zy, to, body)
+        await httpRequest('get', urlObject)
+        let result = httpResult;
+        if (result.data.alipay_account==null) {
+            console.log(`\n检测到支付宝未绑定`)
+        } else console.log(`\n检测到支付宝已绑定 绑定号码 `+result.data.alipay_account)
+    } catch (e) {
+        console.log(e)
+    } finally {
+        return new Promise((resolve) => { resolve(1) });
+    }
+}
+
 async function openBlind() {
     try {
         let url = `http://zyzr.xkrvlj.cn:91/home/blind/openBlind?`
-        let body = `&type=${this.x}&phone_type=ios`
+        let body = `&type=${this.x}&phone_type=ios${sign}`
         let zy = `${zyid}`
         let to = `${zyto}`
         let urlObject = mini(url, zy, to, body)
