@@ -203,8 +203,7 @@
 				if (result.success == true) {        // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
 
 					console.log (`【任务1004】${result.msg} 🎉 获得:${result.obj.gold}个金币`)
-					gold1 = '${result.obj.gold}';
-					console.log('gold1');
+					
 
 				} else {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
 
