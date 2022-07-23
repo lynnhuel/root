@@ -20,7 +20,7 @@
  let asjzsjbappArr = [];
  let data = '';
  let msg = '';
- 
+ let gold = '';
  
  !(async () => {
  
@@ -165,7 +165,7 @@
  function 任务1004(timeout = 0) {
 	return new Promise((resolve) => {
 		let url = {
-			url: `https://activity.hnmzq.com/asjzactivity/asjzNewWalkApi.do?saveVideoRecord&userid=${data}&coinid=1004&${gold}&symbol=gdt&tempid=8a9bcb3e6eaafaa6016eab0604d10008&taskid=bbbbbbb`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
+			url: `https://activity.hnmzq.com/asjzactivity/asjzNewWalkApi.do?saveVideoRecord&userid=${data}&coinid=1004&$gold={gold}&symbol=gdt&tempid=8a9bcb3e6eaafaa6016eab0604d10008&taskid=bbbbbbb`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
 			headers: {            // headers 是请求体  可以直接用精简后的 hd  也就是服务器校验的部分，他需要啥，我们就给他啥  
 
 				"Host": "activity.hnmzq.com",
@@ -271,7 +271,7 @@ function 任务1004翻倍(timeout = 0) {
 function 任务1003(timeout = 0) {
 	return new Promise((resolve) => {
 		let url = {
-			url: `https://activity.hnmzq.com/asjzactivity/asjzNewWalkApi.do?saveVideoRecord&userid=${data}&coinid=1003&gold=168&symbol=gdt&tempid=8a9bcb3e6eaafaa6016eab0604d10008&taskid=bbbbbbb`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
+			url: `https://activity.hnmzq.com/asjzactivity/asjzNewWalkApi.do?saveVideoRecord&userid=${data}&coinid=1003&gold={gold}&symbol=gdt&tempid=8a9bcb3e6eaafaa6016eab0604d10008&taskid=bbbbbbb`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
 			headers: {            // headers 是请求体  可以直接用精简后的 hd  也就是服务器校验的部分，他需要啥，我们就给他啥  
 
 				"Host": "activity.hnmzq.com",
@@ -376,7 +376,7 @@ function 任务1003翻倍(timeout = 0) {
 function 任务1002(timeout = 0) {
 	return new Promise((resolve) => {
 		let url = {
-			url: `https://activity.hnmzq.com/asjzactivity/asjzNewWalkApi.do?saveVideoRecord&userid=${data}&coinid=1002&gold=167&symbol=gdt&tempid=8a9bcb3e6eaafaa6016eab0604d10008&taskid=bbbbbbb`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
+			url: `https://activity.hnmzq.com/asjzactivity/asjzNewWalkApi.do?saveVideoRecord&userid=${data}&coinid=1002&gold={gold}&symbol=gdt&tempid=8a9bcb3e6eaafaa6016eab0604d10008&taskid=bbbbbbb`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
 			headers: {            // headers 是请求体  可以直接用精简后的 hd  也就是服务器校验的部分，他需要啥，我们就给他啥  
 
 				"Host": "activity.hnmzq.com",
