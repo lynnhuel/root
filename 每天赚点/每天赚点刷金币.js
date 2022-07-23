@@ -88,11 +88,7 @@
             await 任务1004翻倍();
 			await $.wait(2000);
             await 任务1006();
-			await $.wait(2000);
-            await 收取金币();
-			await $.wait(2000);
-			gold = randomInt(200,1000);
-            await 收取金币翻倍();
+			
 
 
 
@@ -542,112 +538,6 @@ function 任务1001(timeout = 0) {
 	})
 }
 
-function 收取金币(timeout = 0) {
-	return new Promise((resolve) => {
-		let url = {
-			url: `https://activity.hnmzq.com/mtzdactivity/walkApi.do?saveGoldRward&coinid=1003&userid=${data}&channelid=mtzd_vivo&version_mtzd=216&patchversion=3610&currentOaid=&originchannel=mtzd`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
-			headers: {            // headers 是请求体  可以直接用精简后的 hd  也就是服务器校验的部分，他需要啥，我们就给他啥  
-
-			   "Host": "activity.hnmzq.com",
-			   "Connection": "keep-alive",
-			   "Accept": "application/json, text/plain, */*",
-			   "taskid": "null",
-			   "User-Agent": "Mozilla/5.0 (Linux; Android 8.1.0; vivo X21A Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36",
-			   "Referer": "https://activity.hnmzq.com/mtzdwalk/?hasHead=0&adPlatform=gromore&v=1&vv=1&userid=${data}&channelid=mtzd_vivo",
-			   "Accept-Encoding": "gzip, deflate",
-			   "Accept-Language": "zh-CN,en-US;q=0.9",
-			   "X-Requested-With": "com.yongloveru.hjw",
-			},
-			// body: '',       // 这是一个 get 请求，没有请求体 body   如果是 post 不要忘记他鸭！
-
-		}
-
-		if (debug) {
-			//console.log(`\n【debug】=============== 这是 签到 请求 url ===============`);
-			//console.log(JSON.stringify(url));     //这个是打印请求的url日志信息
-		}
-
-		$.get(url, async (error, response, data) => {     // 这是一个 get 请求 , 如果是 post  记得把这里改了 
-			try {
-				if (debug) {
-					//console.log(`\n\n【debug】===============这是 签到 返回data==============`);
-					//console.log(data)     //这个是答应服务器返回的信息
-				}
-
-				let result = JSON.parse(data);
-				if (result.success == true) {        // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log (`【收取金币】${result.msg} 🎉 获得:${result.obj.gold}个金币`)
-
-				} else {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-				   console.log (`【收取金币】${result.msg} 🎉 `)
-					
-
-				}
-
-			} catch (e) {
-				console.log(e)
-			} finally {
-				resolve();
-			}
-		}, timeout)
-	})
-}
-
-
-function 收取金币翻倍(timeout = 0) {
-	return new Promise((resolve) => {
-		let url = {
-			url: `https://activity.hnmzq.com/mtzdactivity/walkApi.do?saveVideoRecord&coinid=1003&gold=${gold}&videodata=%7B%22symbol%22:%22gromore%22,%22videotype%22:%220%22,%22veidoid%22:%22946539869%22%7D&userid=${data}&channelid=mtzd_vivo&version_mtzd=216&patchversion=3610&currentOaid=&originchannel=mtzd`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
-			headers: {            // headers 是请求体  可以直接用精简后的 hd  也就是服务器校验的部分，他需要啥，我们就给他啥  
-
-			   "Host": "activity.hnmzq.com",
-			   "Connection": "keep-alive",
-			   "Accept": "application/json, text/plain, */*",
-			   "taskid": "null",
-			   "User-Agent": "Mozilla/5.0 (Linux; Android 8.1.0; vivo X21A Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36",
-			   "Referer": " https://activity.hnmzq.com/mtzdwalk/?hasHead=0&adPlatform=gromore&v=1&vv=1&userid=${data}&channelid=mtzd_vivo",
-			   "Accept-Encoding": "gzip, deflate",
-			   "Accept-Language": "zh-CN,en-US;q=0.9",
-			   "X-Requested-With": "com.yongloveru.hjw",
-			},
-			// body: '',       // 这是一个 get 请求，没有请求体 body   如果是 post 不要忘记他鸭！
-
-		}
-
-		if (debug) {
-			//console.log(`\n【debug】=============== 这是 签到 请求 url ===============`);
-			//console.log(JSON.stringify(url));     //这个是打印请求的url日志信息
-		}
-
-		$.get(url, async (error, response, data) => {     // 这是一个 get 请求 , 如果是 post  记得把这里改了 
-			try {
-				if (debug) {
-					//console.log(`\n\n【debug】===============这是 签到 返回data==============`);
-					//console.log(data)     //这个是答应服务器返回的信息
-				}
-
-				let result = JSON.parse(data);
-				if (result.success == true) {        // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-					console.log (`【收取金币翻倍】${result.msg} 🎉 获得:${result.obj.gold}个金币`)
-
-				} else {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
-
-				   console.log (`【收取金币翻倍】${result.msg} 🎉 `)
-					
-
-				}
-
-			} catch (e) {
-				console.log(e)
-			} finally {
-				resolve();
-			}
-		}, timeout)
-	})
-}
 
 
 
