@@ -70,7 +70,7 @@
 				 await $.wait(sleep*1000);
 			 }
 			 */
-			a
+			
 			await 刮刮乐2000金币翻倍();
 			
 			
