@@ -70,8 +70,7 @@
 				 await $.wait(sleep*1000);
 			 }
 			 */
-			await 刮刮乐6000金币();
-			await $.wait(30000);
+			
 			await 刮刮乐6000金币翻倍();
 			
 			
@@ -92,55 +91,7 @@
  
  
  
- //签到                       //////////////////////////////////////////////////////
- function 刮刮乐6000金币(timeout = 0) {
-	return new Promise((resolve) => {
 
-		let url = {
-			url: `http://card.tutianads.com/goldhome/scratchecard/scratcheCardController.do?getScratcheCardInfo`,
-			headers: {
-				"client_id": "webApp",
-				"client_id": "webApp",
-				"client_secret": "webApp",
-				"Authorization": "",
-				"version": "216",
-				"orginChannel": "mtzd",
-				"channelId": "mtzd_vivo",
-				"access_token": data[0],
-				"taskid": data[1],
-				"userId": data[2],
-				"Content-Type": "application/x-www-form-urlencoded",
-				"Content-Length": "898",
-				"Host": "card.tutianads.com",
-				"Connection": "Keep-Alive",
-				"Accept-Encoding": "gzip",
-				"User-Agent": "okhttp/3.4.1",
-				
-			},
-			body: data[3],
-		}
-		$.post(url, async (err, resp, data) => {
-			try {
-
-				let result = JSON.parse(data)
-
-				if (result.success == true) {
-
-					console.log(`【刮刮乐6000金币】：${result.msg} 🎉获得:${result.obj.prizeGoldTotal}金币 \n`)
-				} else {
-
-					console.log(`【刮刮乐6000金币】：${result.msg} 🎉 \n`)
-
-				}
-			} catch (e) {
-
-			} finally {
-
-				resolve()
-			}
-		}, timeout)
-	})
-}
 
 
 function 刮刮乐6000金币翻倍(timeout = 0) {
