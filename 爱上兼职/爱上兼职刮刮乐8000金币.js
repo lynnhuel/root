@@ -105,7 +105,7 @@ function 刮刮乐8000金币翻倍(timeout = 0) {
 				"Content-Lengthj": "836",
 				"Host": "asjz.tutianads.com",
 				"Connection": "Keep-Alive",
-				"Accept-Encoding": "gzip"
+				"Accept-Encoding": "gzip",
 				"User-Agent": "okhttp/3.11.0",
 				
 			},
