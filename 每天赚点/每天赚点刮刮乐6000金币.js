@@ -176,10 +176,10 @@ function 刮刮乐6000金币翻倍(timeout = 0) {
 
 				if (result.success == true) {
 
-					console.log(`【刮刮乐乐6000金币翻倍】：${result.msg} 🎉获得:${result.obj.gold}金币 \n`)
+					console.log(`【刮刮乐6000金币翻倍】：${result.msg} 🎉获得:${result.obj.gold}金币 \n`)
 				} else {
 
-					console.log(`【刮刮乐乐6000金币翻倍】：${result.msg} 🎉 \n`)
+					console.log(`【刮刮乐6000金币翻倍】：${result.msg} 🎉 \n`)
 
 				}
 			} catch (e) {
