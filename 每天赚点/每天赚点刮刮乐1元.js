@@ -98,18 +98,27 @@ function 刮刮乐1元翻倍(timeout = 0) {
 	return new Promise((resolve) => {
 
 		let url = {
-			url: `http://asjz.tutianads.com/api/veidoRecordController.do?saveDoublePrize`,
+			url: `http://card.tutianads.com/goldhome/scratchecard/scratcheCardRecordController.do?saveDoublePrize`,
 			headers: {
-				"taskid": data[0],
+				"client_id": "webApp",
+				"client_id": "webApp",
+				"client_secret": "webApp",
+				"Authorization": "",
+				"version": "216",
+				"orginChannel": "mtzd",
+				"channelId": "mtzd_vivo",
+				"access_token": data[0],
+				"taskid": data[4],
+				"userId": data[2],
 				"Content-Type": "application/x-www-form-urlencoded",
-				"Content-Lengthj": "836",
-				"Host": "asjz.tutianads.com",
+				"Content-Length": "898",
+				"Host": "card.tutianads.com",
 				"Connection": "Keep-Alive",
 				"Accept-Encoding": "gzip",
-				"User-Agent": "okhttp/3.11.0",
+				"User-Agent": "okhttp/3.4.1",
 				
 			},
-			body: data[1],
+			body: data[3],
 		}
 		$.post(url, async (err, resp, data) => {
 			try {
