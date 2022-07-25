@@ -108,7 +108,7 @@ function 刮刮乐66.6元翻倍(timeout = 0) {
 				"orginChannel": "mtzd",
 				"channelId": "mtzd_vivo",
 				"access_token": data[0],
-				"taskid": data[4],
+				"taskid": data[1],
 				"userId": data[2],
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Content-Length": "898",
