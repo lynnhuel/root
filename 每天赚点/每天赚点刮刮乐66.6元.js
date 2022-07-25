@@ -71,7 +71,7 @@
 			 }
 			 */
 	        
-			await 刮刮乐66.6元翻倍();
+			await 刮刮乐666元翻倍();
 			
 			
 
@@ -94,7 +94,7 @@
  
 
 
-function 刮刮乐66.6元翻倍(timeout = 0) {
+function 刮刮乐666元翻倍(timeout = 0) {
 	return new Promise((resolve) => {
 
 		let url = {
