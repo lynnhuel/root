@@ -108,7 +108,7 @@ function 刮刮乐1000元翻倍(timeout = 0) {
 				"orginChannel": "mtzd",
 				"channelId": "mtzd_vivo",
 				"access_token": data[0],
-				"taskid": data[4],
+				"taskid": data[1],
 				"userId": data[2],
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Content-Length": "898",
@@ -118,7 +118,7 @@ function 刮刮乐1000元翻倍(timeout = 0) {
 				"User-Agent": "okhttp/3.4.1",
 				
 			},
-			body: data[5],
+			body: data[3],
 		}
 		$.post(url, async (err, resp, data) => {
 			try {
