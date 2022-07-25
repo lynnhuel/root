@@ -98,7 +98,7 @@ function 刮刮乐10000金币翻倍(timeout = 0) {
 	return new Promise((resolve) => {
 
 		let url = {
-			url: `http://asjz.tutianads.com/api/veidoRecordController.do?saveDoublePrize`,
+			url: `http://card.tutianads.com/goldhome/scratchecard/scratcheCardRecordController.do?saveDoublePrize`,
 			headers: {
 				"client_id": "webApp",
 				"client_id": "webApp",
