@@ -71,7 +71,7 @@
 			 }
 			 */
 	        
-			await 刮刮乐5000元翻倍();
+			await 刮刮乐500元翻倍();
 			
 			
 
@@ -94,7 +94,7 @@
  
 
 
-function 刮刮乐5000元翻倍(timeout = 0) {
+function 刮刮乐500元翻倍(timeout = 0) {
 	return new Promise((resolve) => {
 
 		let url = {
@@ -127,10 +127,10 @@ function 刮刮乐5000元翻倍(timeout = 0) {
 
 				if (result.success == true) {
 
-					console.log(`【刮刮乐5000元翻倍】：${result.msg} 🎉获得:${result.obj.gold}金币 \n`)
+					console.log(`【刮刮乐500元翻倍】：${result.msg} 🎉获得:${result.obj.gold}金币 \n`)
 				} else {
 
-					console.log(`【刮刮乐5000元翻倍】：${result.msg} 🎉 \n`)
+					console.log(`【刮刮乐500元翻倍】：${result.msg} 🎉 \n`)
 
 				}
 			} catch (e) {
