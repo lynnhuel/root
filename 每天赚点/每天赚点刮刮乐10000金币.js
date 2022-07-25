@@ -1,4 +1,4 @@
-/**
+/***
  * 爱上兼职刮刮乐 
  * 地址： https://raw.githubusercontent.com/yml2213/template/master/jiaocheng.js
  * 
