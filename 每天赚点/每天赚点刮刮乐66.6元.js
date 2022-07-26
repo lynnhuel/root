@@ -1,8 +1,8 @@
 /***
- * 爱上兼职刮刮乐 
+ * 每天赚点刮刮乐 
  * 地址： https://raw.githubusercontent.com/yml2213/template/master/jiaocheng.js
  * 
- * 爱上兼职刮刮乐    这里是写脚本说明的地方
+ * 每天赚点刮刮乐    这里是写脚本说明的地方
  * 本脚本仅用于学习使用请勿直接运行
  * 
  * ========= 青龙 =========
@@ -10,7 +10,7 @@
  * 
  */
 
- const jsname = "爱上兼职刮刮乐";
+ const jsname = "每天赚点刮刮乐";
  const $ = Env(jsname);
  const notify = $.isNode() ? require('./sendNotify') : '';      // 这里是 node（青龙属于node环境）通知相关的
  const Notify = 1; //0为关闭通知，1为打开通知,默认为1
