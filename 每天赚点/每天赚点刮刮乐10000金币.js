@@ -10,7 +10,7 @@
  * 
  */
 
- const jsname = 每天赚点刮刮乐";
+ const jsname = "每天赚点刮刮乐";
  const $ = Env(jsname);
  const notify = $.isNode() ? require('./sendNotify') : '';      // 这里是 node（青龙属于node环境）通知相关的
  const Notify = 1; //0为关闭通知，1为打开通知,默认为1
@@ -72,7 +72,7 @@
 			 */
 	        
 			await 刮刮乐10000金币翻倍();
-			
+			await $.wait(2000);
 			
 
 
