@@ -80,7 +80,8 @@
 				await 看视频开宝箱();
 				await $.wait(2000)
 				await 看视频领金币();
-			
+			        await $.wait(2000)
+				await 浏览赚();
 			
 			
 			
@@ -331,7 +332,62 @@ function 看视频领金币(timeout = 0) {
 	})
 }
  
- 
+
+function 浏览赚(timeout = 0) {
+	return new Promise((resolve) => {
+
+		let url = {
+			url: `https://klb.diandianapi.com/api/sign/addBrowse`,
+			headers: {
+				"Content-Length": "0",
+				"Host": "klb.diandianapi.com",
+				"Connection": "Keep-Alive",
+				"Accept-Encoding": "gzip",
+				"time": "1659236494",
+				"platform": "2",
+				"cdid": "2967e4c055af67b058b9091c2ebb257f",
+				"deviceId": "2967e4c055af67b058b9091c2ebb257f",
+				"token": data,
+				"androidid": "30afe96c28bd0cf8",
+				"pkgId": "1",
+				"domain": "www",
+				"domainSSS": "www",
+				"systemVersion": "android7.0",
+				"deviceModel": "Xiaomi MI 9",
+				"appVersion": "2.7.2",
+				"nativeVersion": "1.0.4",
+				"systemType": "android",
+				"channel": "huawei",
+				"appname": "klb",
+				"systemVersion": "android7.0",
+				"sign": "A62544F71A5EFB7FEA1C37A26ACF64FE",
+				"User-Agent": "com.kuailebang.app/1.0.4/huawei",
+				
+			},
+			body: '{}',
+		}
+		$.post(url, async (err, resp, data) => {
+			try {
+
+				let result = JSON.parse(data)
+
+				if (result.code == 200) {
+
+					console.log(`【浏览赚】：${result.msg} 🎉获得:${result.data.get}金币 \n`)
+				} else {
+
+					console.log(`【浏览赚】：${result.msg} 🎉`)
+
+				}
+			} catch (e) {
+
+			} finally {
+
+				resolve()
+			}
+		}, timeout)
+	})
+}
  
  
  
