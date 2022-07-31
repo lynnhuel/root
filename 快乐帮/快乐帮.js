@@ -6,7 +6,7 @@
  * 本脚本仅用于学习使用请勿直接运行
  * 
  * ========= 青龙 =========
- * 变量格式：export klbapp=' xxxx & xxx @  xxxx & xxx '  多个账号用 @分割 
+ * 变量格式：export klbapp=' token & xxx @  xxxx & xxx '  多个账号用 @分割 
  * 
  */
 
@@ -20,6 +20,7 @@
  let klbappArr = [];
  let data = '';
  let msg = '';
+ let sign = '';
  
  
  !(async () => {
@@ -71,6 +72,10 @@
 			 }
 			 */
 	        
+                await $.wait(2000)
+				await 签到();
+                await $.wait(2000)
+				await 签到加倍();
 				await $.wait(2000)
 				await 看视频开宝箱();
 				await $.wait(2000)
@@ -94,8 +99,124 @@
  
  //------------------------------下面是函数部分------------------------------
  
+
+
+
  
  
+ function 签到(timeout = 0) {
+	return new Promise((resolve) => {
+
+		let url = {
+			url: `https://klb.diandianapi.com/api/sign/sign`,
+			headers: {
+                "Content-Length": "0",
+				"Host": "klb.diandianapi.com",
+				"Connection": "Keep-Alive",
+				"Accept-Encoding": "gzip",
+				"time": "1659230739",
+				"platform": "2",
+				"cdid": "2967e4c055af67b058b9091c2ebb257f",
+				"deviceId": "2967e4c055af67b058b9091c2ebb257f",
+				"token": data,
+				"androidid": "30afe96c28bd0cf8",
+				"pkgId": "1",
+				"domain": "www",
+				"domainSSS": "www",
+				"systemVersion": "android7.0",
+				"deviceModel": "Xiaomi MI 9",
+				"appVersion": "2.7.2",
+				"nativeVersion": "1.0.4",
+				"systemType": "android",
+				"channel": "huawei",
+				"appname": "klb",
+				"systemVersion": "android7.0",
+				"sign": "EE89B3AC4665AD5DC3A9C734B73869DE",
+				"User-Agent": "com.kuailebang.app/1.0.4/huawei",
+				
+			},
+			body: '{}',
+		}
+		$.post(url, async (err, resp, data) => {
+			try {
+
+				let result = JSON.parse(data)
+
+				if (result.code == 200) {
+
+					console.log(`【签到】：${result.msg} 🎉获得:${result.data.integral}金币 \n`)
+				} else {
+
+					console.log(`【签到】：${result.msg} 🎉`)
+
+				}
+			} catch (e) {
+
+			} finally {
+
+				resolve()
+			}
+		}, timeout)
+	})
+}
+
+
+function 签到加倍(timeout = 0) {
+	return new Promise((resolve) => {
+
+		let url = {
+			url: `https://klb.diandianapi.com/api/sign/videos`,
+			headers: {
+                "Content-Length": "0",
+				"Host": "klb.diandianapi.com",
+				"Connection": "Keep-Alive",
+				"Accept-Encoding": "gzip",
+				"time": "1659230779",
+				"platform": "2",
+				"cdid": "2967e4c055af67b058b9091c2ebb257f",
+				"deviceId": "2967e4c055af67b058b9091c2ebb257f",
+				"token": data,
+				"androidid": "30afe96c28bd0cf8",
+				"pkgId": "1",
+				"domain": "www",
+				"domainSSS": "www",
+				"systemVersion": "android7.0",
+				"deviceModel": "Xiaomi MI 9",
+				"appVersion": "2.7.2",
+				"nativeVersion": "1.0.4",
+				"systemType": "android",
+				"channel": "huawei",
+				"appname": "klb",
+				"systemVersion": "android7.0",
+				"sign": "EF27185EE872ED44580ABF95D30A9EB4",
+				"User-Agent": "com.kuailebang.app/1.0.4/huawei",
+				
+			},
+			body: '{}',
+		}
+		$.post(url, async (err, resp, data) => {
+			try {
+
+				let result = JSON.parse(data)
+
+				if (result.code == 200) {
+
+					console.log(`【签到加倍】：${result.msg} 🎉获得:${result.data.reward}金币 \n`)
+				} else {
+
+					console.log(`【签到加倍】：${result.msg} 🎉`)
+
+				}
+			} catch (e) {
+
+			} finally {
+
+				resolve()
+			}
+		}, timeout)
+	})
+}
+
  
 
 
