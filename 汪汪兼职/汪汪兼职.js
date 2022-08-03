@@ -119,7 +119,7 @@ function 签到(timeout = 0) {
 				"User-Agent": "okhttp/3.12.1",
 				
 			},
-			body: '{taskid=${data[0]}&userid=${data[2]}&version_mtzd=101&currentOaid=&patchversion=1000&channelid=hbsp_ali&originchannel=mtzd}',
+			body: `taskid=1321546218&userid=${data[0]}&version_mtzd=101&currentOaid=&patchversion=1000&channelid=hbsp_ali&originchannel=mtzd`,
 		}
 		$.post(url, async (err, resp, data) => {
 			try {
@@ -162,7 +162,7 @@ function 体验每天赚点(timeout = 0) {
 				"User-Agent": "okhttp/3.12.1",
 				
 			},
-			body: '{taskid=1321546213&userid=${data[0]}&version_mtzd=101&currentOaid=&patchversion=1000&channelid=hbsp_ali&originchannel=mtzd}',
+			body: `taskid=1321546213&userid=${data[0]}&version_mtzd=101&currentOaid=&patchversion=1000&channelid=hbsp_ali&originchannel=mtzd`,
 		}
 		$.post(url, async (err, resp, data) => {
 			try {
@@ -204,7 +204,7 @@ function 体验爱上兼职(timeout = 0) {
 				"User-Agent": "okhttp/3.12.1",
 				
 			},
-			body: '{taskid=1321546214&&userid=${data[0]}&version_mtzd=101&currentOaid=&patchversion=1000&channelid=hbsp_ali&originchannel=mtzd}',
+			body: `taskid=1321546214&userid=${data[0]}&version_mtzd=101&currentOaid=&patchversion=1000&channelid=hbsp_ali&originchannel=mtzd`,
 		}
 		$.post(url, async (err, resp, data) => {
 			try {
@@ -245,7 +245,7 @@ function 分享一次视频(timeout = 0) {
 				"User-Agent": "okhttp/3.12.1",
 				
 			},
-			body: '{taskid=1321546215&&userid=${data[0]}&version_mtzd=101&currentOaid=&patchversion=1000&channelid=hbsp_ali&originchannel=mtzd}',
+			body: `taskid=1321546215&userid=${data[0]}&version_mtzd=101&currentOaid=&patchversion=1000&channelid=hbsp_ali&originchannel=mtzd`,
 		}
 		$.post(url, async (err, resp, data) => {
 			try {
