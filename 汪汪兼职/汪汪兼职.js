@@ -49,7 +49,7 @@
 			 let num = index + 1
 			 console.log(`\n========= 开始【第 ${num} 个账号】=========\n`)
  
-			 data = wwappArr[index].split('#');      // 这里是分割你每个账号的每个小项   
+			 data = wwappArr[index].split('&');      // 这里是分割你每个账号的每个小项   
 			 deviceId = wwapp.match(/device_id=[-\w]{0,100}/);   //获取当前设备的id
  
 			 if (debug) {
