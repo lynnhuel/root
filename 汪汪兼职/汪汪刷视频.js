@@ -70,7 +70,8 @@
 				 await $.wait(sleep*1000);
 			 }
 			 */
-	            sleep = randomInt(60,150);
+			for(i=0;i<15;i=i+1){
+	            sleep = randomInt(53,70);
 				await $.wait(2000);
 				await 刷视频30金币();
 				console.log('随机延迟'+sleep+'秒');
@@ -91,7 +92,10 @@
 				console.log('随机延迟'+sleep+'秒');
 				await $.wait(sleep*1000);
 				await 刷视频80金币();
-			
+				console.log('随机延迟'+sleep+'秒');
+				await $.wait(sleep*1000);
+				await 观看视频领红包();
+		 }
 			
 
 
@@ -403,7 +407,46 @@ function 刷视频34金币(timeout = 0) {
 	})
 }
 
+function 观看视频领红包(timeout = 0) {
+	return new Promise((resolve) => {
 
+		let url = {
+			url: `http://video.hnmzq.com/api/redClockController.do?getRedEnvelope`,
+			headers: {
+				"taskid": "e360d085c3434b9f08c32edd593fd02f72342a791f47ee903388d09b6bffb42ec6b33f85618275faadc935dfd55e85848ab8d81d76a92abb",
+				"version_mtzd": "101",
+				"Content-Type": "application/x-www-form-urlencoded",
+				"Content-Length": "125",
+				"Host": "video.hnmzq.com",
+				"Connection": "Keep-Alive",
+				"Accept-Encoding": "gzip",
+				"User-Agent": "okhttp/3.12.1",
+				
+			},
+			body: `taskid=402880fb7309ed2b0173274f987c0160&userid=${data}&version_mtzd=101&currentOaid=&patchversion=1000&channelid=hbsp_ali&originchannel=mtzd`,
+		}
+		$.post(url, async (err, resp, data) => {
+			try {
+
+				let result = JSON.parse(data)
+
+				if (result.success == true) {
+
+					console.log(`【观看视频领红包】：${result.msg} 🎉获得:${result.obj.gold}金币 \n`)
+				} else {
+
+					console.log(`【观看视频领红包】：${result.msg} 🎉`)
+
+				}
+			} catch (e) {
+
+			} finally {
+
+				resolve()
+			}
+		}, timeout)
+	})
+}
 
  
  
