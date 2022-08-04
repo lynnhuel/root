@@ -27,10 +27,7 @@
 	 if (!(await Envs()))  	//多账号分割 判断变量是否为空  初步处理多账号
 		 return;
 	 else {
- 
-		 console.log(`(本地脚本7-18 )`);       // console.log是输出信息的，可以在脚本日志中看到输出（打印）的信息
- 
-		 console.log(`\n\n=========================================    \n脚本执行 - 北京时间(UTC+8)：${new Date(
+ ===========================    \n脚本执行 - 北京时间(UTC+8)：${new Date(
 			 new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 +
 			 8 * 60 * 60 * 1000).toLocaleString()} \n=========================================\n`);
  
@@ -70,15 +67,19 @@
 				 await $.wait(sleep*1000);
 			 }
 			 */
-	            sleep = randomInt(120,200);
+	            sleep = randomInt(120,130);
 				await $.wait(2000);
 				await 签到();
-				console.log('随机延迟'+sleep+'秒');
+				console.log('随机延迟'+sleep/1000+'秒');
 				await $.wait(sleep*1000);
 				await 体验每天赚点();
-				console.log('随机延迟'+sleep+'秒');
+				await $.wait(2000);
+				await 领取体验每天赚点奖励();
+				console.log('随机延迟'+sleep/1000+'秒');
 				await $.wait(sleep*1000);
 				await 体验爱上兼职();
+				await $.wait(2000);
+				await 领取体验爱上兼职奖励();
 			    await $.wait(2000);
 			    await 分享一次视频();
 			
@@ -150,9 +151,50 @@ function 体验每天赚点(timeout = 0) {
 	return new Promise((resolve) => {
 
 		let url = {
+			url: `http://video.hnmzq.com/api/redClockController.do?saveAppMonitorInfo`,
+			headers: {
+				"Accept-Language": "zh-CN,zh;q=0.8",
+				"taskid": data[2],
+				"Content-Type": "application/x-www-form-urlencoded",
+				"Content-Length": "166",
+				"Host": "video.hnmzq.com",
+				"Connection": "Keep-Alive",
+				"Accept-Encoding": "gzip",
+				"User-Agent": "okhttp/3.12.1",
+				
+			},
+			body: `channelid=hbsp_ali&userid=${data[0]}&version_mtzd=101&patchversion=1000&currentOaid=&originchannel=mtzd&monitortime=120&type=0&taskid=1321546213`,
+		}
+		$.post(url, async (err, resp, data) => {
+			try {
+
+				let result = JSON.parse(data)
+
+				if (result.success == true) {
+
+					console.log(`【体验每天赚点】：${result.msg} 🎉 `)
+				} else {
+
+					console.log(`【体验每天赚点】：${result.msg} 🎉`)
+
+				}
+			} catch (e) {
+
+			} finally {
+
+				resolve()
+			}
+		}, timeout)
+	})
+}
+
+function 领取体验每天赚点奖励(timeout = 0) {
+	return new Promise((resolve) => {
+
+		let url = {
 			url: `http://video.hnmzq.com/api/redClockController.do?getRedEnvelope`,
 			headers: {
-				"taskid": data[2],
+				"taskid": data[3],
 				"version_mtzd": "101",
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Content-Length": "143",
@@ -186,15 +228,55 @@ function 体验每天赚点(timeout = 0) {
 		}, timeout)
 	})
 }
-
  
 function 体验爱上兼职(timeout = 0) {
 	return new Promise((resolve) => {
 
 		let url = {
+			url: `http://video.hnmzq.com/api/redClockController.do?saveAppMonitorInfo`,
+			headers: {
+				"Accept-Language": "zh-CN,zh;q=0.8",
+				"taskid": data[4],
+				"Content-Type": "application/x-www-form-urlencoded",
+				"Content-Length": "166",
+				"Host": "video.hnmzq.com",
+				"Connection": "Keep-Alive",
+				"Accept-Encoding": "gzip",
+				"User-Agent": "okhttp/3.12.1",
+				
+			},
+			body: `channelid=hbsp_ali&userid=${data[0]}&version_mtzd=101&patchversion=1000&currentOaid=&originchannel=mtzd&monitortime=120&type=0&taskid=1321546214`,
+		}
+		$.post(url, async (err, resp, data) => {
+			try {
+
+				let result = JSON.parse(data)
+
+				if (result.success == true) {
+
+					console.log(`【体验爱上兼职】：${result.msg} 🎉`)
+				} else {
+
+					console.log(`【体验爱上兼职】：${result.msg} 🎉`)
+
+				}
+			} catch (e) {
+
+			} finally {
+
+				resolve()
+			}
+		}, timeout)
+	})
+}
+
+function 领取体验爱上兼职奖励(timeout = 0) {
+	return new Promise((resolve) => {
+
+		let url = {
 			url: `http://video.hnmzq.com/api/redClockController.do?getRedEnvelope`,
 			headers: {
-				"taskid": data[3],
+				"taskid": data[5],
 				"version_mtzd": "101",
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Content-Length": "143",
@@ -213,10 +295,10 @@ function 体验爱上兼职(timeout = 0) {
 
 				if (result.success == true) {
 
-					console.log(`【体验爱上兼职】：${result.msg} 🎉获得:${result.obj.gold}金币 \n`)
+					console.log(`【领取体验爱上兼职奖励】：${result.msg} 🎉获得:${result.obj.gold}金币 \n`)
 				} else {
 
-					console.log(`【体验爱上兼职】：${result.msg} 🎉`)
+					console.log(`【领取体验爱上兼职奖励】：${result.msg} 🎉`)
 
 				}
 			} catch (e) {
@@ -235,7 +317,7 @@ function 分享一次视频(timeout = 0) {
 		let url = {
 			url: `http://video.hnmzq.com/api/redClockController.do?getRedEnvelope`,
 			headers: {
-				"taskid": data[4],
+				"taskid": data[6],
 				"version_mtzd": "101",
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Content-Length": "143",
