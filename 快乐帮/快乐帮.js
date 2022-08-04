@@ -82,6 +82,7 @@
 				await 看视频领金币();
 			        await $.wait(2000)
 				await 浏览赚();
+			        await 步数兑换积分();
 			
 			
 			
@@ -388,7 +389,74 @@ function 浏览赚(timeout = 0) {
 		}, timeout)
 	})
 }
+
+
+function 步数兑换积分(timeout = 3 * 1000) {
+	 return new Promise((resolve) => {
+		 let url = {
+			 url: `https://klb.diandianapi.com/api/V1.steps/exchange`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
+			 headers: {            // headers 是请求体  可以直接用精简后的 hd  也就是服务器校验的部分，他需要啥，我们就给他啥  
+				"Host": "klb.diandianapi.com",
+				"Connection": "Keep-Alive",
+				"Accept-Encoding": "gzip",
+				"time": "1659594255",
+				"platform": "2",
+				"cdid": "2967e4c055af67b058b9091c2ebb257f",
+				"deviceId": "2967e4c055af67b058b9091c2ebb257f",
+				"token": data,
+				"androidid": "30afe96c28bd0cf8",
+				"pkgId": "1",
+				"domain": "www",
+				"domainSSS": "www",
+				"systemVersion": "android7.0",
+				"deviceModel": "Xiaomi MI 9",
+				"appVersion": "2.7.2",
+				"nativeVersion": "1.0.4",
+				"systemType": "android",
+				"channel": "huawei",
+				"appname": "klb",
+				"systemVersion": "android7.0",
+				"sign": "F6235F5CAA6912BF879EE3188C9F6E6B",
+				"User-Agent": "com.kuailebang.app/1.0.4/huawei ",
+				 
+				 
+			 },
+			 // body: '',       // 这是一个 get 请求，没有请求体 body   如果是 post 不要忘记他鸭！
  
+		 }
+ 
+		 if (debug) {
+			 //console.log(`\n【debug】=============== 这是 签到 请求 url ===============`);
+			 //console.log(JSON.stringify(url));     //这个是打印请求的url日志信息
+		 }
+ 
+		 $.get(url, async (error, response, data) => {     // 这是一个 get 请求 , 如果是 post  记得把这里改了 
+			 try {
+				 if (debug) {
+					// console.log(`\n\n【debug】===============这是 签到 返回data==============`);
+					// console.log(data)     //这个是答应服务器返回的信息
+				 }
+ 
+				 let result = JSON.parse(data);
+				 if (result.code == 200) {        // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
+ 
+					 console.log(`【步数兑换积分】${result.msg} 🎉 获得${result.data.reward}积分 `)
+ 
+				 }  else {    // 这里是根据服务器返回的数据做判断  方便我们知道任务是否完成了
+ 
+					 console.log(`【步数兑换积分】${result.msg} 🎉  `)
+					 
+ 
+				 }
+ 
+			 } catch (e) {
+				 console.log(e)
+			 } finally {
+				 resolve();
+			 }
+		 }, timeout)
+	 })
+ }
  
  
  
