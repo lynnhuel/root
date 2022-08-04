@@ -70,8 +70,8 @@
 				 await $.wait(sleep*1000);
 			 }
 			 */
-			for(i=0;i<15;i=i+1){
-	            sleep = randomInt(53,70);
+			for(i=0;i<9;i=i+1){
+	            sleep = randomInt(20,56);
 				await $.wait(2000);
 				await 刷视频30金币();
 				console.log('随机延迟'+sleep+'秒');
