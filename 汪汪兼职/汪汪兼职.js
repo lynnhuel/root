@@ -27,27 +27,30 @@
 	 if (!(await Envs()))  	//多账号分割 判断变量是否为空  初步处理多账号
 		 return;
 	 else {
- ===========================    \n脚本执行 - 北京时间(UTC+8)：${new Date(
+ 
+		 console.log(`(本地脚本7-18 )`);       // console.log是输出信息的，可以在脚本日志中看到输出（打印）的信息
+ 
+		 console.log(`\n\n=========================================    \n脚本执行 - 北京时间(UTC+8)：${new Date(
 			 new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 +
 			 8 * 60 * 60 * 1000).toLocaleString()} \n=========================================\n`);
  
 		 await wyy();
  
-		 console.log(`\n=================== 共找到 ${wwappArr.length} 个账号 ===================`)
+		 console.log(`\n=================== 共找到 ${wwsspappArr.length} 个账号 ===================`)
  
 		 if (debug) {
-			 //console.log(`【debug】 这是你的全部账号数组:\n ${wwappArr}`);  //这是打印账号信息
+			 //console.log(`【debug】 这是你的全部账号数组:\n ${wwsspappArr}`);  //这是打印账号信息
 		 }
  
  
-		 for (let index = 0; index < wwappArr.length; index++) {
+		 for (let index = 0; index < wwsspappArr.length; index++) {
  
  
 			 let num = index + 1
 			 console.log(`\n========= 开始【第 ${num} 个账号】=========\n`)
  
-			 data = wwappArr[index].split('&');      // 这里是分割你每个账号的每个小项   
-			 deviceId = wwapp.match(/device_id=[-\w]{0,100}/);   //获取当前设备的id
+			 data = wwsspappArr[index].split('&');      // 这里是分割你每个账号的每个小项   
+			 deviceId = wwsspapp.match(/device_id=[-\w]{0,100}/);   //获取当前设备的id
  
 			 if (debug) {
 				 //console.log(`\n 【debug】 这是你第 ${num} 账号信息:\n ${data}\n`);  //这个是第几个账号的信息
