@@ -73,12 +73,12 @@
 	            sleep = randomInt(120,130);
 				await $.wait(2000);
 				await 签到();
-				console.log('随机延迟'+sleep/1000+'秒');
+				console.log('随机延迟'+sleep+'秒');
 				await $.wait(sleep*1000);
 				await 体验每天赚点();
 				await $.wait(2000);
 				await 领取体验每天赚点奖励();
-				console.log('随机延迟'+sleep/1000+'秒');
+				console.log('随机延迟'+sleep+'秒');
 				await $.wait(sleep*1000);
 				await 体验爱上兼职();
 				await $.wait(2000);
