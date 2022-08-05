@@ -6,7 +6,7 @@
  * 本脚本仅用于学习使用请勿直接运行
  * 
  * ========= 青龙 =========
- * 变量格式：export ggyqzlzqapp=' xxxx & xxx @  xxxx & xxx '  多个账号用 @分割 
+ * 变量格式：export ggyqapp=' xxxx & xxx @  xxxx & xxx '  多个账号用 @分割 
  * 
  */
 
@@ -16,16 +16,15 @@
  const Notify = 1; //0为关闭通知，1为打开通知,默认为1
  const debug = 1; //0为关闭调试，1为打开调试,默认为0
  //////////////////////
- let ggyqzlzqapp = process.env.ggyqzlzqapp;               // 这里是 从青龙的 配置文件 读取你写的变量
- let ggyqzlzqappArr = [];
+ let ggyqapp = process.env.ggyqapp;               // 这里是 从青龙的 配置文件 读取你写的变量
+ let ggyqappArr = [];
  let data = '';
  let msg = '';
  let id1 = '';
  let id2 = '';
  let id3 = '';
  let id4 = '';
- let id5 = '';
- let id6 = '';
+ 
  
  
  !(async () => {
@@ -42,21 +41,21 @@
  
 		 await wyy();
  
-		 console.log(`\n=================== 共找到 ${ggyqzlzqappArr.length} 个账号 ===================`)
+		 console.log(`\n=================== 共找到 ${ggyqappArr.length} 个账号 ===================`)
  
 		 if (debug) {
-			 //console.log(`【debug】 这是你的全部账号数组:\n ${ggyqzlzqappArr}`);  //这是打印账号信息
+			 //console.log(`【debug】 这是你的全部账号数组:\n ${ggyqappArr}`);  //这是打印账号信息
 		 }
  
  
-		 for (let index = 0; index < ggyqzlzqappArr.length; index++) {
+		 for (let index = 0; index < ggyqappArr.length; index++) {
  
  
 			 let num = index + 1
 			 console.log(`\n========= 开始【第 ${num} 个账号】=========\n`)
  
-			 data = ggyqzlzqappArr[index].split('&');      // 这里是分割你每个账号的每个小项   
-			 deviceId = ggyqzlzqapp.match(/device_id=[-\w]{0,100}/);   //获取当前设备的id
+			 data = ggyqappArr[index].split('&');      // 这里是分割你每个账号的每个小项   
+			 deviceId = ggyqapp.match(/device_id=[-\w]{0,100}/);   //获取当前设备的id
  
 			 if (debug) {
 				 //console.log(`\n 【debug】 这是你第 ${num} 账号信息:\n ${data}\n`);  //这个是第几个账号的信息
@@ -775,16 +774,16 @@ function 任务16收金币翻倍(timeout = 0) {
  //#region 固定代码 可以不管他
  // ============================================变量检查============================================ \\
  async function Envs() {
-	 if (ggyqzlzqapp) {
-		 if (ggyqzlzqapp.indexOf("@") != -1) {
-			 ggyqzlzqapp.split("@").forEach((item) => {
-				 ggyqzlzqappArr.push(item);
+	 if (ggyqapp) {
+		 if (ggyqapp.indexOf("@") != -1) {
+			 ggyqapp.split("@").forEach((item) => {
+				 ggyqappArr.push(item);
 			 });
 		 } else {
-			 ggyqzlzqappArr.push(ggyqzlzqapp);
+			 ggyqappArr.push(ggyqapp);
 		 }
 	 } else {
-		 console.log(`\n 【${$.name}】：未填写变量 ggyqzlzqapp`)
+		 console.log(`\n 【${$.name}】：未填写变量 ggyqapp`)
 		 return;
 	 }
  
