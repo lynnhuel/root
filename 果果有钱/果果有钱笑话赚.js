@@ -141,7 +141,7 @@ function 获取笑话(timeout = 0) {
 
 				if (result.success == true) {
 
-					console.log(`【获取笑话】：${result.message} 🎉获得:${result.data.point}金币`)
+					console.log(`【获取笑话】：${result.message} 🎉`)
 					console.log(`【获取到id】：${result.data.id} `)
 					id = `${result.data.id}`
 				} else {
@@ -205,7 +205,7 @@ function 领取笑话奖励(timeout = 0) {
 
 				if (result.success == true) {
 
-					console.log(`【领取笑话奖励】：${result.message} 🎉获得:${result.data}金币`)
+					console.log(`【领取笑话奖励】：${result.message} 🎉获得:${result.data}金币\n`)
 				} else {
 
 					console.log(`【领取笑话奖励】：${result.message} 🎉`)
