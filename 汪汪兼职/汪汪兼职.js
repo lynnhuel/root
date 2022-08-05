@@ -157,7 +157,7 @@ function 体验每天赚点(timeout = 0) {
 			url: `http://video.hnmzq.com/api/redClockController.do?saveAppMonitorInfo`,
 			headers: {
 				"Accept-Language": "zh-CN,zh;q=0.8",
-				"taskid": data[2],
+				"taskid": data[1],
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Content-Length": "166",
 				"Host": "video.hnmzq.com",
@@ -197,7 +197,7 @@ function 领取体验每天赚点奖励(timeout = 0) {
 		let url = {
 			url: `http://video.hnmzq.com/api/redClockController.do?getRedEnvelope`,
 			headers: {
-				"taskid": data[3],
+				"taskid": data[1],
 				"version_mtzd": "101",
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Content-Length": "143",
@@ -239,7 +239,7 @@ function 体验爱上兼职(timeout = 0) {
 			url: `http://video.hnmzq.com/api/redClockController.do?saveAppMonitorInfo`,
 			headers: {
 				"Accept-Language": "zh-CN,zh;q=0.8",
-				"taskid": data[4],
+				"taskid": data[1],
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Content-Length": "166",
 				"Host": "video.hnmzq.com",
@@ -279,7 +279,7 @@ function 领取体验爱上兼职奖励(timeout = 0) {
 		let url = {
 			url: `http://video.hnmzq.com/api/redClockController.do?getRedEnvelope`,
 			headers: {
-				"taskid": data[5],
+				"taskid": data[1],
 				"version_mtzd": "101",
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Content-Length": "143",
@@ -320,7 +320,7 @@ function 分享一次视频(timeout = 0) {
 		let url = {
 			url: `http://video.hnmzq.com/api/redClockController.do?getRedEnvelope`,
 			headers: {
-				"taskid": data[6],
+				"taskid": data[1],
 				"version_mtzd": "101",
 				"Content-Type": "application/x-www-form-urlencoded",
 				"Content-Length": "143",
