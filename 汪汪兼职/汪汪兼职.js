@@ -36,21 +36,21 @@
  
 		 await wyy();
  
-		 console.log(`\n=================== 共找到 ${wwsspappArr.length} 个账号 ===================`)
+		 console.log(`\n=================== 共找到 ${wwappArr.length} 个账号 ===================`)
  
 		 if (debug) {
-			 //console.log(`【debug】 这是你的全部账号数组:\n ${wwsspappArr}`);  //这是打印账号信息
+			 //console.log(`【debug】 这是你的全部账号数组:\n ${wwappArr}`);  //这是打印账号信息
 		 }
  
  
-		 for (let index = 0; index < wwsspappArr.length; index++) {
+		 for (let index = 0; index < wwappArr.length; index++) {
  
  
 			 let num = index + 1
 			 console.log(`\n========= 开始【第 ${num} 个账号】=========\n`)
  
-			 data = wwsspappArr[index].split('&');      // 这里是分割你每个账号的每个小项   
-			 deviceId = wwsspapp.match(/device_id=[-\w]{0,100}/);   //获取当前设备的id
+			 data = wwappArr[index].split('&');      // 这里是分割你每个账号的每个小项   
+			 deviceId = wwapp.match(/device_id=[-\w]{0,100}/);   //获取当前设备的id
  
 			 if (debug) {
 				 //console.log(`\n 【debug】 这是你第 ${num} 账号信息:\n ${data}\n`);  //这个是第几个账号的信息
