@@ -83,8 +83,10 @@
 				await 体验爱上兼职();
 				await $.wait(2000);
 				await 领取体验爱上兼职奖励();
-			    await $.wait(2000);
-			    await 分享一次视频();
+			        await $.wait(2000);
+			        await 分享一次视频();
+			        await $.wait(2000);
+			        await 领取分享一次视频奖励();
 			
 			
 
@@ -314,7 +316,50 @@ function 领取体验爱上兼职奖励(timeout = 0) {
 	})
 }
  
+
 function 分享一次视频(timeout = 0) {
+	return new Promise((resolve) => {
+
+		let url = {
+			url: `http://video.hnmzq.com/api/redClockController.do?saveShortShareInfo`,
+			headers: {
+				"taskid": data[1],
+				"Accept-Language": "zh-CN,zh;q=0.8",
+				"Content-Type": "application/x-www-form-urlencoded",
+				"Content-Length": "136",
+				"Host": "video.hnmzq.com",
+				"Connection": "Keep-Alive",
+				"Accept-Encoding": "gzip",
+				"User-Agent": "okhttp/3.12.1",
+				
+			},
+			body: `channelid=hbsp_ali&userid=${data[0]}&version_mtzd=101&patchversion=1000&currentOaid=&originchannel=mtzd&platfrom=2`,
+		}
+		$.post(url, async (err, resp, data) => {
+			try {
+
+				let result = JSON.parse(data)
+
+				if (result.success == true) {
+
+					console.log(`【分享一次视频】：${result.msg} 🎉`)
+				} else {
+
+					console.log(`【分享一次视频】：${result.msg} 🎉`)
+
+				}
+			} catch (e) {
+
+			} finally {
+
+				resolve()
+			}
+		}, timeout)
+	})
+}
+
+
+function 领取分享一次视频奖励(timeout = 0) {
 	return new Promise((resolve) => {
 
 		let url = {
@@ -339,10 +384,10 @@ function 分享一次视频(timeout = 0) {
 
 				if (result.success == true) {
 
-					console.log(`【分享一次视频】：${result.msg} 🎉获得:${result.obj.gold}金币 \n`)
+					console.log(`【领取分享一次视频奖励】：${result.msg} 🎉获得:${result.obj.gold}金币 \n`)
 				} else {
 
-					console.log(`【分享一次视频】：${result.msg} 🎉`)
+					console.log(`【领取分享一次视频奖励】：${result.msg} 🎉`)
 
 				}
 			} catch (e) {
@@ -356,6 +401,7 @@ function 分享一次视频(timeout = 0) {
 }
  
  
+
  
  
  
