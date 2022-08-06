@@ -70,9 +70,13 @@
 				 await $.wait(sleep*1000);
 			 }
 			 */
-	            sleep = randomInt(120,130);
+	                        sleep = randomInt(120,130);
 				await $.wait(2000);
-				await 签到();
+				await 完成一次签到();
+			        await $.wait(2000);
+				await 完成一次提现();
+			        await $.wait(2000);
+				await 获得一次视频红包();
 				console.log('随机延迟'+sleep+'秒');
 				await $.wait(sleep*1000);
 				await 体验每天赚点();
@@ -109,7 +113,7 @@
  
 
 
-function 签到(timeout = 0) {
+function 完成一次签到(timeout = 0) {
 	return new Promise((resolve) => {
 
 		let url = {
@@ -134,10 +138,92 @@ function 签到(timeout = 0) {
 
 				if (result.success == true) {
 
-					console.log(`【签到】：${result.msg} 🎉获得:${result.obj.gold}金币 \n`)
+					console.log(`【完成一次签到】：${result.msg} 🎉获得:${result.obj.gold}金币 \n`)
 				} else {
 
-					console.log(`【签到】：${result.msg} 🎉`)
+					console.log(`【完成一次签到】：${result.msg} 🎉`)
+
+				}
+			} catch (e) {
+
+			} finally {
+
+				resolve()
+			}
+		}, timeout)
+	})
+}
+
+function 完成一次提现(timeout = 0) {
+	return new Promise((resolve) => {
+
+		let url = {
+			url: `http://video.hnmzq.com/api/redClockController.do?getRedEnvelope`,
+			headers: {
+				"taskid": data[1],
+				"version_mtzd": "101",
+				"Content-Type": "application/x-www-form-urlencoded",
+				"Content-Length": "143",
+				"Host": "video.hnmzq.com",
+				"Connection": "Keep-Alive",
+				"Accept-Encoding": "gzip",
+				"User-Agent": "okhttp/3.12.1",
+				
+			},
+			body: `taskid=1321546219&userid=${data[0]}&version_mtzd=101&currentOaid=&patchversion=1000&channelid=hbsp_ali&originchannel=mtzd`,
+		}
+		$.post(url, async (err, resp, data) => {
+			try {
+
+				let result = JSON.parse(data)
+
+				if (result.success == true) {
+
+					console.log(`【完成一次提现】：${result.msg} 🎉获得:${result.obj.gold}金币 \n`)
+				} else {
+
+					console.log(`【完成一次提现】：${result.msg} 🎉`)
+
+				}
+			} catch (e) {
+
+			} finally {
+
+				resolve()
+			}
+		}, timeout)
+	})
+}
+
+function 获得一次视频红包(timeout = 0) {
+	return new Promise((resolve) => {
+
+		let url = {
+			url: `http://video.hnmzq.com/api/redClockController.do?getRedEnvelope`,
+			headers: {
+				"taskid": data[1],
+				"version_mtzd": "101",
+				"Content-Type": "application/x-www-form-urlencoded",
+				"Content-Length": "143",
+				"Host": "video.hnmzq.com",
+				"Connection": "Keep-Alive",
+				"Accept-Encoding": "gzip",
+				"User-Agent": "okhttp/3.12.1",
+				
+			},
+			body: `taskid=1321546217&userid=${data[0]}&version_mtzd=101&currentOaid=&patchversion=1000&channelid=hbsp_ali&originchannel=mtzd`,
+		}
+		$.post(url, async (err, resp, data) => {
+			try {
+
+				let result = JSON.parse(data)
+
+				if (result.success == true) {
+
+					console.log(`【获得一次视频红包】：${result.msg} 🎉获得:${result.obj.gold}金币 \n`)
+				} else {
+
+					console.log(`【获得一次视频红包】：${result.msg} 🎉`)
 
 				}
 			} catch (e) {
