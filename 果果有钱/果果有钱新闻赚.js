@@ -14,7 +14,7 @@
  const $ = Env(jsname);
  const notify = $.isNode() ? require('./sendNotify') : '';      // 这里是 node（青龙属于node环境）通知相关的
  const Notify = 1; //0为关闭通知，1为打开通知,默认为1
- const debug = 1; //0为关闭调试，1为打开调试,默认为0
+ const debug = 0; //0为关闭调试，1为打开调试,默认为0
  //////////////////////
  let ggyqapp = process.env.ggyqapp;               // 这里是 从青龙的 配置文件 读取你写的变量
  let ggyqappArr = [];
@@ -63,23 +63,15 @@
 			 // 	1. await只能运行与async函数中
 			 // 	2. 函数的名字不可以相同
 			 //      3. 不够可以自己复制
-			 /*
-			 for(i=0;i<5;i++){
-				let rw = random(1,3,5,7,9,11,12,14)
-				 sleep =randomInt(22,35);    //这个是随机延时多少秒
-				 console.log('开始第'+i+'次任务');
-				 await rw();
-				 console.log('延迟'+sleep+'秒后开始下一个任务');
-				 await $.wait(sleep*1000);
-			 }
-			 */
+			 
 			
 			
-	            
+	            for(i=0; i<10; i++){
 				await $.wait(2000);
 				await 获取新闻();
-				await $.wait(30000);
+				await $.wait(10000);
 				await 领取新闻奖励();
+                }
 				
             
 
@@ -139,15 +131,22 @@ function 获取新闻(timeout = 0) {
 			},
 			body: `category=news&itemId=7096318741582971403`,
 		}
+        if (debug) {
+			 console.log(`\n【debug】=============== 这是 签到 请求 url ===============`);
+			 console.log(JSON.stringify(url));     //这个是打印请求的url日志信息
+		 }
 		$.post(url, async (err, resp, data) => {
 			try {
-
+                 if (debug) {
+					 console.log(`\n\n【debug】===============这是 签到 返回data==============`);
+					 console.log(data)     //这个是答应服务器返回的信息
+				 }
 				let result = JSON.parse(data)
 
 				if (result.success == true) {
 
                     console.log(`【获取新闻id】：${result.message} 🎉 \nid为:${result.data.recordId}`)
-					id = '${result.data.recordId}';
+                    id=result.data.recordId;
 				} else {
 
 					console.log(`【获取新闻】：${result.message} 🎉`)
@@ -202,8 +201,16 @@ function 领取新闻奖励(timeout = 0) {
 			},
 			body: `recordId=${id}`,
 		}
+        if (debug) {
+			 console.log(`\n【debug】=============== 这是 签到 请求 url ===============`);
+			 console.log(JSON.stringify(url));     //这个是打印请求的url日志信息
+		 }
 		$.post(url, async (err, resp, data) => {
 			try {
+                if (debug) {
+					 console.log(`\n\n【debug】===============这是 签到 返回data==============`);
+					 console.log(data)     //这个是答应服务器返回的信息
+				 }
 
 				let result = JSON.parse(data)
 
@@ -221,7 +228,7 @@ function 领取新闻奖励(timeout = 0) {
 
 				resolve()
 			}
-		}, timeout)
+		},timeout)
 	})
 }
 
