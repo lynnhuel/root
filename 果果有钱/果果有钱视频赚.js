@@ -68,7 +68,8 @@
 			
 	            
 				
-                for (let i = 0; i < 11; i++){
+                for (let i = 0; i < 8; i++){
+			console.log(`第${i+1}次视频任务`)
                     await 获取视频();
                     await $.wait(30000);
 					await 领取视频奖励();
