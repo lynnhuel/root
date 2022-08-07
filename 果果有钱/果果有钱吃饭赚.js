@@ -21,7 +21,6 @@
  let data = '';
  let msg = '';
  let idArr = '';
- let taskIdArr = [];
 
 
  
@@ -143,7 +142,7 @@ function 查询id(timeout = 0) {
 				if (result.success == true) {
 
 					console.log(`【查询id】：${result.message} 🎉\n`)
-                    for(i=0;i<result.data.pointList.length;i+++){
+                    for(i=0;i<result.data.pointList.length;i++){
                         idArr[i]=result.data.pointList[i].id;
                     }
 				} else {
