@@ -20,6 +20,8 @@
  let ggyqappArr = [];
  let data = '';
  let msg = '';
+ let idArr = '';
+ let taskIdArr = [];
 
 
  
@@ -54,7 +56,7 @@
 			 deviceId = ggyqapp.match(/device_id=[-\w]{0,100}/);   //获取当前设备的id
  
 			 if (debug) {
-				 //console.log(`\n 【debug】 这是你第 ${num} 账号信息:\n ${data}\n`);  //这个是第几个账号的信息
+				 console.log(`\n 【debug】 这是你第 ${num} 账号信息:\n ${data}\n`);  //这个是第几个账号的信息
 			 }
  
  
@@ -62,23 +64,28 @@
 			 // 	1. await只能运行与async函数中
 			 // 	2. 函数的名字不可以相同
 			 //      3. 不够可以自己复制
-			 /*
-			 for(i=0;i<5;i++){
-				let rw = random(1,3,5,7,9,11,12,14)
-				 sleep =randomInt(22,35);    //这个是随机延时多少秒
-				 console.log('开始第'+i+'次任务');
-				 await rw();
-				 console.log('延迟'+sleep+'秒后开始下一个任务');
-				 await $.wait(sleep*1000);
-			 }
-			 */
+			 
 			
 			
-	            
+	            for(j = 0;j < 101 ; j++){
+                    console.log(`第${j+1}次转盘`)
+                await $.wait(500);
+				await 转盘100次();
+
+                }
 				//await $.wait(2000);
 				//await 转盘100次();
-				await $.wait(5000);
+				await $.wait(3000);
 				await 获取转盘id();
+                await $.wait(2000);
+                await subTask();
+                for (let i = 0; i < taskIdArr.length; i++){
+                    await subTask(i+1);
+                    await $.wait(2000);
+
+                }
+                
+				
 				
             
 
@@ -135,19 +142,19 @@ function 转盘100次(timeout = 0) {
 
 				
 			},
-			body: `id=67823`,
+			body: ``,
 		}
 		$.post(url, async (err, resp, data) => {
 			try {
 
 				let result = JSON.parse(data)
 
-				if (result.success == true) {
+				if (result.status == 201) {
 
-					console.log(`【转盘100次】：${result.message} 🎉获得:${result.data.money}金币`)
+					console.log(`【转盘100次】获得：${result.message} 🎉\n`)
 				} else {
 
-					console.log(`【转盘100次】：${result.message} 🎉`)
+					console.log(`【转盘100次】获得：${result.message} 🎉\n`)
 
 				}
 			} catch (e) {
@@ -196,16 +203,33 @@ function 获取转盘id(timeout = 0) {
 
 				
 			},
-			body: `id=67824`,
+			body: ``,
 		}
+        if (debug) {
+			 console.log(`\n【debug】=============== 这是 签到 请求 url ===============`);
+			 console.log(JSON.stringify(url));     //这个是打印请求的url日志信息
+		 }
 		$.post(url, async (err, resp, data) => {
 			try {
+                if (debug) {
+					 console.log(`\n\n【debug】===============这是 签到 返回data==============`);
+					 console.log(data)     //这个是答应服务器返回的信息
+				 }
 
 				let result = JSON.parse(data)
 
 				if (result.success == true) {
 
-					console.log(`【获取转盘id】：${result.message} 🎉id为:${result.data.id}`)
+					console.log(`【获取转盘id】：${result.message} 🎉`);
+                    
+                    
+                            for (let i = 0; i < result.data.length; i++) {
+                                idArr = result.data[i].id;
+                                taskIdArr[i] = idArr;
+                                console.log(taskIdArr[i]);
+                            }
+                      
+
 				} else {
 
 					console.log(`【获取转盘id】：${result.message} 🎉`)
@@ -221,6 +245,76 @@ function 获取转盘id(timeout = 0) {
 	})
 }
 
+function subTask(num) {
+	return new Promise((resolve) => {
+
+		let url = {
+			url: `http://b3noz2ckcgokcgok.hotbuybuy.com/luckdraw/stage/get`,
+			headers: {
+				"Connection": "close",
+				"appid": "xianyu",
+				"appCode": "6",
+				"servername": "guoguozhuanqian",
+				"version": "230",
+				"appStore": "yingyongbao",
+				"brand": "vivo",
+				"os": "vivo Funtouch OS_4.0",
+				"osv": "vivo X21A",
+				"sysVer": "8.1.0",
+				"imei": "869498032246775",
+				"oaid": "",
+				"android_id": "c8c47200213fbe6b",
+				"macAddr": "02:00:00:00:00:00",
+				"lat": "",
+				"lng": "",
+				"ua": "Mozilla/5.0 (Linux; Android 8.1.0; vivo X21A Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36",
+				"token": data[0],
+				"userid": data[1],
+				"time": "1659678817520",
+				"nsSecret1": "293cad405d03ed0e86929ed6b9d28b0f",
+				"os_version": "27",
+				"isEmulator": "0",
+                "Content-Type": "application/x-www-form-urlencoded",
+				"Content-Length": "8",
+				"Host": "b3noz2ckcgokcgok.hotbuybuy.com",
+				"Accept-Encoding": "gzip",
+				"User-Agent": "okhttp/3.8.0",
+
+				
+			},
+			body: `id=${taskIdArr[num]}`,
+		}
+        if (debug) {
+			 console.log(`\n【debug】=============== 这是 签到 请求 url ===============`);
+			 console.log(JSON.stringify(url));     //这个是打印请求的url日志信息
+		 }
+		$.post(url, async (err, resp, data) => {
+			try {
+                if (debug) {
+					 console.log(`\n\n【debug】===============这是 签到 返回data==============`);
+					 console.log(data)     //这个是答应服务器返回的信息
+				 }
+
+				let result = JSON.parse(data)
+
+				if (result.success == true) {
+
+					console.log(`【领取奖励】：${result.message} 🎉获得:${result.data.money}金币`);
+
+				} else {
+
+					console.log(`【领取奖励】：${result.message} 🎉`)
+
+				}
+			} catch (e) {
+
+			} finally {
+
+				resolve()
+			}
+		})
+	})
+}
 
 
 
