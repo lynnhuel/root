@@ -14,7 +14,7 @@
  const $ = Env(jsname);
  const notify = $.isNode() ? require('./sendNotify') : '';      // 这里是 node（青龙属于node环境）通知相关的
  const Notify = 1; //0为关闭通知，1为打开通知,默认为1
- const debug = 1; //0为关闭调试，1为打开调试,默认为0
+ const debug = 0; //0为关闭调试，1为打开调试,默认为0
  //////////////////////
  let ggyqapp = process.env.ggyqapp;               // 这里是 从青龙的 配置文件 读取你写的变量
  let ggyqappArr = [];
@@ -66,7 +66,8 @@
 			 
 			
 			
-	            
+	            await $.wait(3000);
+				await 领取吃饭补贴();
 				await $.wait(3000);
 				await 查询id();
                 for (let i = 0; i < idArr.length; i++){
@@ -230,11 +231,11 @@ function 领取吃饭奖励(num) {
 	})
 }
 
-function subTask(num) {
+function 领取吃饭补贴(timeout=0) {
 	return new Promise((resolve) => {
 
 		let url = {
-			url: `http://b3noz2ckcgokcgok.hotbuybuy.com/luckdraw/stage/get`,
+			url: `http://rbb.hotbuybuy.com/wangzhuan/earns/api/eat/have`,
 			headers: {
 				"Connection": "close",
 				"appid": "xianyu",
@@ -255,8 +256,8 @@ function subTask(num) {
 				"ua": "Mozilla/5.0 (Linux; Android 8.1.0; vivo X21A Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36",
 				"token": data[0],
 				"userid": data[1],
-				"time": "1659678817520",
-				"nsSecret1": "293cad405d03ed0e86929ed6b9d28b0f",
+				"time": "1659845896962",
+				"nsSecret1": "c9fd0611ecf99de4b6b872ade42ff8f1",
 				"os_version": "27",
 				"isEmulator": "0",
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -267,7 +268,7 @@ function subTask(num) {
 
 				
 			},
-			body: `id=${taskIdArr[num]}`,
+			body: ``,
 		}
         if (debug) {
 			 console.log(`\n【debug】=============== 这是 签到 请求 url ===============`);
@@ -284,11 +285,11 @@ function subTask(num) {
 
 				if (result.success == true) {
 
-					console.log(`【领取奖励】：${result.message} 🎉获得:${result.data.money}金币`);
+					console.log(`【领取吃饭补贴】：${result.message} 🎉`);
 
 				} else {
 
-					console.log(`【领取奖励】：${result.message} 🎉`)
+					console.log(`【领取吃饭补贴】：${result.message} 🎉`)
 
 				}
 			} catch (e) {
@@ -297,7 +298,7 @@ function subTask(num) {
 
 				resolve()
 			}
-		})
+		},timeout)
 	})
 }
 
