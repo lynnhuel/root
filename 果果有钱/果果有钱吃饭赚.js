@@ -20,7 +20,7 @@
  let ggyqappArr = [];
  let data = '';
  let msg = '';
- let idArr = '';
+ let idArr = [];
 
 
  
