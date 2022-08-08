@@ -71,7 +71,6 @@
                     console.log(`第${j+1}次转盘`)
                 await $.wait(500);
 				await 转盘100次();
-
                 }
 				//await $.wait(2000);
 				//await 转盘100次();
@@ -79,7 +78,7 @@
 				await 获取转盘id();
                 await $.wait(2000);
                 await subTask();
-                for (let i = 0; i < taskIdArr.length; i++){
+                for (let i = 0; i < taskIdArr.length-1; i++){
                     await subTask(i);
                     await $.wait(5000);
 
