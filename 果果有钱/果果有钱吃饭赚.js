@@ -135,8 +135,16 @@ function 查询id(timeout = 0) {
 			},
 			body: ``,
 		}
+		if (debug) {
+			 console.log(`\n【debug】=============== 这是 签到 请求 url ===============`);
+			 console.log(JSON.stringify(url));     //这个是打印请求的url日志信息
+		 }
 		$.post(url, async (err, resp, data) => {
 			try {
+				if (debug) {
+					 console.log(`\n\n【debug】===============这是 签到 返回data==============`);
+					 console.log(data)     //这个是答应服务器返回的信息
+				 }
 
 				let result = JSON.parse(data)
 
