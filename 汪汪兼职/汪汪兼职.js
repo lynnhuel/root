@@ -91,6 +91,8 @@
 			        await 分享一次视频();
 			        await $.wait(2000);
 			        await 领取分享一次视频奖励();
+			 await $.wait(2000);
+			        await 领取完善个人资料奖励();
 			
 			
 
@@ -474,6 +476,47 @@ function 领取分享一次视频奖励(timeout = 0) {
 				} else {
 
 					console.log(`【领取分享一次视频奖励】：${result.msg} 🎉`)
+
+				}
+			} catch (e) {
+
+			} finally {
+
+				resolve()
+			}
+		}, timeout)
+	})
+}
+
+function 领取完善个人资料奖励(timeout = 0) {
+	return new Promise((resolve) => {
+
+		let url = {
+			url: `http://video.hnmzq.com/api/redClockController.do?getRedEnvelope`,
+			headers: {
+				"taskid": data[1],
+				"version_mtzd": "101",
+				"Content-Type": "application/x-www-form-urlencoded",
+				"Content-Length": "143",
+				"Host": "video.hnmzq.com",
+				"Connection": "Keep-Alive",
+				"Accept-Encoding": "gzip",
+				"User-Agent": "okhttp/3.12.1",
+				
+			},
+			body: `taskid=1321546216&userid=${data[0]}&version_mtzd=101&currentOaid=&patchversion=1000&channelid=hbsp_ali&originchannel=mtzd`,
+		}
+		$.post(url, async (err, resp, data) => {
+			try {
+
+				let result = JSON.parse(data)
+
+				if (result.success == true) {
+
+					console.log(`【领取完善个人资料奖励】：${result.msg} 🎉获得:${result.obj.gold}金币 \n`)
+				} else {
+
+					console.log(`【领取完善个人资料奖励】：${result.msg} 🎉`)
 
 				}
 			} catch (e) {
