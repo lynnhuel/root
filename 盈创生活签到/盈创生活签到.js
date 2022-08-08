@@ -20,6 +20,7 @@ let ycsh = process.env.ycsh;               // 这里是 从青龙的 配置文�
 let ycshArr = [];
 let data = '';
 let msg = '';
+let token = '';
 
 
 !(async () => {
@@ -62,6 +63,9 @@ let msg = '';
 			//      3. 不够可以自己复制
 
 
+			console.log('开始登录');
+			await 登录();
+			await $.wait(2000);
 			console.log('开始签到任务');
 			await 签到();
 
@@ -89,7 +93,7 @@ let msg = '';
 function 签到 (timeout = 3 * 1000) {
 	return new Promise((resolve) => {
 		let url = {
-			url: `https://o2o.ycsh888.cn/api/user/getredpack/packid/2/token/${data}`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
+			url: `https://o2o.ycsh888.cn/api/user/getredpack/packid/2/token/${token}`,    // 这是请求的 url 可以直接用我们抓包、精简后的URL
 			headers: {            // headers 是请求体  可以直接用精简后的 hd  也就是服务器校验的部分，他需要啥，我们就给他啥  
 
 				"Cookie": "PHPSESSID = p74rqgj2hs417poe22rd0km1n0",
@@ -146,27 +150,38 @@ function 签到 (timeout = 3 * 1000) {
 
 
 
-//收取金币   post                   //////////////////////////////////////////////////////
-function qzsq(timeout = 0) {
+//登录   post                   //////////////////////////////////////////////////////
+function 登录(timeout = 0) {
     return new Promise((resolve) => {
 
         let url = {
-            url: `https://qz.qujianpan.com/qz-main/game/savingsBank/collectPigMoney`,
-            headers: JSON.parse(qzhd),
-            body: qzbody,
+            url: `https://o2o.ycsh888.cn/api/user/loginpwd/`,
+            headers: {
+		    "Cookie": "PHPSESSID=p74rqgj2hs417poe22rd0km1n0",
+		    "Accept": "*/*",
+		    "User-Agent": "Mozilla/5.0 (Linux; Android 8.1.0; vivo X21A Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36 baixingou baixingou",
+		    "Connection": "Keep-Alive",
+		    "Charset": "UTF-8",
+		    "Accept-Encoding": "gzip",
+		    "Content-Type": "application/x-www-form-urlencoded",
+		    "Host": "o2o.ycsh888.cn",
+		    "Content-Length": "33",
+
+	    },
+            body: `phone=${data[0]}&pwd=${data[1]}`,
         }
         $.post(url, async (err, resp, data) => {
             try {
 
                 const result = JSON.parse(data)
 
-                if (result.code == 200) {
+                if (result.code == 1) {
 
-                    console.log(`【收取金币】：${result.data}\n`)
-                    $.message += `【收取金币】：${result.data}\n`
+                    console.log(`【登录】：${result.msg}\n`)
+			token = result.data.token;
                 } else {
 
-                    console.log(`【收取失败】：${result.message}\n`)
+                    console.log(`【登录】：${result.msg}\n`)
 
                 }
             } catch (e) {
