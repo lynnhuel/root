@@ -70,7 +70,7 @@
 				 await $.wait(sleep*1000);
 			 }
 			 */
-			for(i=0;i<9;i=i+1){
+			for(i=0;i<20;i=i+1){
 	            sleep = randomInt(20,56);
 				await $.wait(2000);
 				await 刷视频30金币();
