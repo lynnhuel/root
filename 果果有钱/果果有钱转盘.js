@@ -80,8 +80,8 @@
                 await $.wait(2000);
                 await subTask();
                 for (let i = 0; i < taskIdArr.length; i++){
-                    await subTask(i+1);
-                    await $.wait(2000);
+                    await subTask(i);
+                    await $.wait(5000);
 
                 }
                 
