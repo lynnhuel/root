@@ -78,7 +78,7 @@
 				await 获取转盘id();
                 await $.wait(2000);
                 await subTask();
-                for (let i = 0; i < taskIdArr.length-1; i++){
+                for (let i = 0; i < taskIdArr.length; i++){
                     await subTask(i);
                     await $.wait(5000);
 
