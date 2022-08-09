@@ -66,7 +66,7 @@
 			 
 			
 			
-	            for(i=0; i<10; i++){
+	            for(i=0; i<16; i++){
 				await $.wait(2000);
 				await 获取新闻();
 				await $.wait(10000);
