@@ -298,7 +298,7 @@ function subTask(num) {
 
 				if (result.success == true) {
 
-					console.log(`【领取奖励】：${result.message} 🎉获得:${result.data.money}金币`);
+					console.log(`【领取奖励】：${result.message} 🎉获得:${result.data[i].money}金币`);
 
 				} else {
 
