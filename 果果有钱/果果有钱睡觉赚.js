@@ -65,22 +65,12 @@
 			 //      3. 不够可以自己复制
 			 
 			
-			
-	            
-				
                 
-                
+			        await $.wait(2000);
+			        await 开始睡觉();
                     await $.wait(2000);
 					await 一键领取睡觉奖励();
                     await $.wait(2000);
-
-                
-                
-				
-				
-            
-
-
 
 			 await SendMsg(msg);    // 与发送通知有关系
 		 }
@@ -166,11 +156,11 @@ function 一键领取睡觉奖励(timeout = 0) {
 	})
 }
 
-function 领取视频奖励(timeout = 0) {
+function 开始睡觉(timeout = 0) {
 	return new Promise((resolve) => {
 
 		let url = {
-			url: `http://rbb.hotbuybuy.com/wangzhuan/advertisement/api/video/end`,
+			url: `http://rbb.hotbuybuy.com/wangzhuan/earns/api/sleep/star`,
 			headers: {
 				"Connection": "close",
 				"appid": "xianyu",
@@ -191,8 +181,8 @@ function 领取视频奖励(timeout = 0) {
 				"ua": "Mozilla/5.0 (Linux; Android 8.1.0; vivo X21A Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36",
 				"token": data[0],
 				"userid": data[1],
-				"time": "1659840271756",
-				"nsSecret1": "3578c0024ad64288b7c51e650c7ed466",
+				"time": "1659621297583",
+				"nsSecret1": "4be49a38b111141989b4a87e975d6684",
 				"os_version": "27",
 				"isEmulator": "0",
 				"Content-Length": "0",
@@ -202,7 +192,7 @@ function 领取视频奖励(timeout = 0) {
 
 				
 			},
-			body: `id=${id}&type=NORMAL&adId=948372074&pkg=cn.jj&name=JJ%E6%96%97%E5%9C%B0%E4%B8%BB&downloadUrl=https%3A%2F%2Fapps.bytesfield.com%2Fdownload%2Fbasic%2Fcur%2F13ee046be402ccaba671a432ab0c7c4fd91a3cff`,
+			body: ``,
 		}
         if (debug) {
 			 console.log(`\n【debug】=============== 这是 签到 请求 url ===============`);
@@ -219,11 +209,11 @@ function 领取视频奖励(timeout = 0) {
 
 				if (result.success == true) {
 
-					console.log(`【领取视频奖励】：${result.message} 🎉获得:${result.data}金币`);
+					console.log(`【开始睡觉】：${result.message} 🎉`);
 
 				} else {
 
-					console.log(`【领取视频奖励】：${result.message} 🎉`)
+					console.log(`【开始睡觉】：${result.message} 🎉`)
 
 				}
 			} catch (e) {
